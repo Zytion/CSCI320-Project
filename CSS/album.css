@@ -1,0 +1,21 @@
+ul#albumList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-between;
+}
+
+li.album {
+    width: 20%;
+    padding: 1em;
+}
+li.album figure {
+    margin: 0;
+}
+li.album img {
+    width: 100%;
+}
+
+li.album div {
+
+}

@@ -1,36 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="CSS/style.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/topNav.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/album.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <title>CSCI 320 Project</title>
 </head>
+
 <body>
-    <header>
-        <h1>Dee's Trees Music</h1>
-        <div id="tabs">
-            <ul>
-                <li class="active" data-tab="Songs">Songs</li>
-                <li data-tab="Artists">Artists</li>
-                <li data-tab="Albums">Albums</li>
-                <li data-tab="Genres">Genres</li>
-                <li data-tab="Playlists">Playlists</li>
-                <li data-tab="Data">Data</li>
-            </ul>
-            <small>Showing Songs by name</small>
-        </div>
+    <header class="topnav" id="myTopnav">
+        <a href="index.html" class="active">
+            <h1>Dee's Trees Music</h1>
+        </a>
+        <a href="HTML/user.html">
+            <h1><i class="fa fa-user" aria-hidden="true"> Profile</i></h1>
+        </a>
     </header>
+    <div id="tabs">
+        <ul>
+            <li class="active" data-tab="Songs">Songs</li>
+            <li data-tab="Artists">Artists</li>
+            <li data-tab="Albums">Albums</li>
+            <li data-tab="Genres">Genres</li>
+            <li data-tab="Playlists">Playlists</li>
+            <li data-tab="Data">Data</li>
+        </ul>
+        <small>Showing Songs by name</small>
+    </div>
     <main>
-
+        <ul id="albumList">
+            
+        </ul>
     </main>
-    <div id="loadingTop" class="">
-        <h2>Loading Content</h2>
-    </div>
-    <div id="loadingBot">
-
-    </div>
+    <script src="JS/tabs.js"></script>
+    <script src="JS/create.js"></script>
     <script src="JS/main.js"></script>
 </body>
+
 </html>

@@ -1,36 +1,6 @@
-let loadtime = 1000;
-
-let tabClick = (e) => {
-    load();
-    setTimeout(() => {
-        changeTab(e.target.dataset.tab);
-    }, loadtime / 2);
-}
-
-
-let small = document.querySelector("#tabs small");
-function changeTab(tab)
+window.onload = function load()
 {
-    small.innerHTML = "Showing " + tab + " by name";
-}
-
-function load() {
-    document.querySelector("#loadingTop").className = "load";
-    document.querySelector("#loadingBot").className = "load";
-
-    setTimeout(() => {
-        document.querySelector("#loadingTop").className = "unload";
-        document.querySelector("#loadingBot").className = "unload";
-
-        setTimeout(() => {
-            document.querySelector("#loadingTop").className = "reset";
-            document.querySelector("#loadingBot").className = "reset";
-        }, loadtime);
-
-    }, loadtime);
-}
-
-const tabs = document.querySelectorAll("#tabs li");
-for (let li of tabs) {
-    li.addEventListener("click", tabClick);
+    var i;
+    for(i = 0; i < 10; i++)
+        createAlbum("Files/testcover.jpg", "testing" + i, "tester");
 }
