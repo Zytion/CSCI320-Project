@@ -1,0 +1,63 @@
+div#songPage {
+    display: flex;
+    justify-content: center;
+}
+
+table#songList {
+    width: 100%;
+}
+
+#songList th {
+    padding: 1em;
+
+}
+
+#songList  td {
+    padding: 0.5em;
+}
+
+table#songList, #songList td, #songList th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+
+
+input.heart {
+    position: absolute;
+    scale: 2;
+    opacity: 0;
+}
+
+label.heart {
+  color: #aab8c2;
+  cursor: pointer;
+  font-size: 1em;
+  align-self: center;  
+  transition: color 0.2s ease-in-out;
+}
+
+label.heart:hover {
+  color: grey;
+}
+
+label.heart::selection {
+  color: none;
+  background: transparent;
+}
+
+label.heart::moz-selection {
+  color: none;
+  background: transparent;
+}
+
+input.heart:checked + label {
+  color: #e2264d;
+  will-change: font-size;
+  animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
+}
+
+
+
+@keyframes heart {0%, 17.5% {font-size: 0;}}

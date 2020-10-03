@@ -9,3 +9,19 @@ let createAlbum = (artSrc, title, artest) =>
     li.append(albummArt, div);
     $("#albumList").append(li);
 }
+
+let createSong = (title, artist, album, genre, length, date) => {
+    $("#songList").append(
+        $('<tr></tr>').append(
+        $('<td/>').append(
+            $('<input/>', { "type": "checkbox", "class" : "heart"}),
+            $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
+        ),
+        $('<td/>').text(title),
+        $('<td/>').text(artist),
+        $('<td/>').text(album),
+        $('<td/>').text(genre),
+        $('<td/>').text(length),
+        $('<td/>').text(date)
+        ));
+}

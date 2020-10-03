@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/style.css" />
     <link rel="stylesheet" type="text/css" href="CSS/topNav.css" />
     <link rel="stylesheet" type="text/css" href="CSS/album.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/song.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <title>CSCI 320 Project</title>
@@ -28,14 +29,39 @@
             <li data-tab="Albums">Albums</li>
             <li data-tab="Genres">Genres</li>
             <li data-tab="Playlists">Playlists</li>
-            <li data-tab="Data">Data</li>
         </ul>
         <small>Showing Songs by name</small>
     </div>
     <main>
-        <ul id="albumList">
+        <div id="songPage">
+            <table id="songList">
+            </table>
+        </div>
+        <div id="artistPage">
+            <ul id="artistList">
+                
+            </ul>
+        </div>
+        <div id="albumPage">
+            <ul id="albumList">
             
-        </ul>
+            </ul>
+        </div>
+        <div id="genrePage">
+            <ul id="genreList">
+            
+            </ul>
+        </div>
+        <div id="playlistPage">
+            <ul id="playlistList">
+            
+            </ul>
+        </div>
+        <div id="dataPage">
+            <ul id="dataList">
+            
+            </ul>
+        </div>
     </main>
     <script src="JS/tabs.js"></script>
     <script src="JS/create.js"></script>
