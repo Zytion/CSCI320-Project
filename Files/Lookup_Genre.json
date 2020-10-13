@@ -1,0 +1,817 @@
+[
+  {
+    "genre_id": 1,
+    "title": "Avant-Garde",
+    "#tracks": 8693
+  },
+  {
+    "genre_id": 2,
+    "title": "International",
+    "#tracks": 5271
+  },
+  {
+    "genre_id": 3,
+    "title": "Blues",
+    "#tracks": 1752
+  },
+  {
+    "genre_id": 4,
+    "title": "Jazz",
+    "#tracks": 4126
+  },
+  {
+    "genre_id": 5,
+    "title": "Classical",
+    "#tracks": 4106
+  },
+  {
+    "genre_id": 6,
+    "title": "Novelty",
+    "#tracks": 914
+  },
+  {
+    "genre_id": 7,
+    "title": "Comedy",
+    "#tracks": 217
+  },
+  {
+    "genre_id": 8,
+    "title": "Old-Time / Historic",
+    "#tracks": 868
+  },
+  {
+    "genre_id": 9,
+    "title": "Country",
+    "#tracks": 1987
+  },
+  {
+    "genre_id": 10,
+    "title": "Pop",
+    "#tracks": 13845
+  },
+  {
+    "genre_id": 11,
+    "title": "Disco",
+    "#tracks": 367
+  },
+  {
+    "genre_id": 12,
+    "title": "Rock",
+    "#tracks": 32923
+  },
+  {
+    "genre_id": 13,
+    "title": "Easy Listening",
+    "#tracks": 730
+  },
+  {
+    "genre_id": 14,
+    "title": "Soul-RnB",
+    "#tracks": 1499
+  },
+  {
+    "genre_id": 15,
+    "title": "Electronic",
+    "#tracks": 34413
+  },
+  {
+    "genre_id": 16,
+    "title": "Sound Effects",
+    "#tracks": 304
+  },
+  {
+    "genre_id": 17,
+    "title": "Folk",
+    "#tracks": 12706
+  },
+  {
+    "genre_id": 18,
+    "title": "Soundtrack",
+    "#tracks": 5913
+  },
+  {
+    "genre_id": 19,
+    "title": "Funk",
+    "#tracks": 773
+  },
+  {
+    "genre_id": 20,
+    "title": "Spoken",
+    "#tracks": 1876
+  },
+  {
+    "genre_id": 21,
+    "title": "Hip-Hop",
+    "#tracks": 8389
+  },
+  {
+    "genre_id": 22,
+    "title": "Audio Collage",
+    "#tracks": 774
+  },
+  {
+    "genre_id": 25,
+    "title": "Punk",
+    "#tracks": 9261
+  },
+  {
+    "genre_id": 26,
+    "title": "Post-Rock",
+    "#tracks": 1952
+  },
+  {
+    "genre_id": 27,
+    "title": "Lo-Fi",
+    "#tracks": 6041
+  },
+  {
+    "genre_id": 30,
+    "title": "Field Recordings",
+    "#tracks": 3237
+  },
+  {
+    "genre_id": 31,
+    "title": "Metal",
+    "#tracks": 1498
+  },
+  {
+    "genre_id": 32,
+    "title": "Noise",
+    "#tracks": 7268
+  },
+  {
+    "genre_id": 33,
+    "title": "Psych-Folk",
+    "#tracks": 2267
+  },
+  {
+    "genre_id": 36,
+    "title": "Krautrock",
+    "#tracks": 688
+  },
+  {
+    "genre_id": 37,
+    "title": "Jazz: Vocal",
+    "#tracks": 97
+  },
+  {
+    "genre_id": 38,
+    "title": "Experimental",
+    "#tracks": 38154
+  },
+  {
+    "genre_id": 41,
+    "title": "Electroacoustic",
+    "#tracks": 6110
+  },
+  {
+    "genre_id": 42,
+    "title": "Ambient Electronic",
+    "#tracks": 5723
+  },
+  {
+    "genre_id": 43,
+    "title": "Radio Art",
+    "#tracks": 210
+  },
+  {
+    "genre_id": 45,
+    "title": "Loud-Rock",
+    "#tracks": 2469
+  },
+  {
+    "genre_id": 46,
+    "title": "Latin America",
+    "#tracks": 573
+  },
+  {
+    "genre_id": 47,
+    "title": "Drone",
+    "#tracks": 2546
+  },
+  {
+    "genre_id": 49,
+    "title": "Free-Folk",
+    "#tracks": 753
+  },
+  {
+    "genre_id": 53,
+    "title": "Noise-Rock",
+    "#tracks": 2071
+  },
+  {
+    "genre_id": 58,
+    "title": "Psych-Rock",
+    "#tracks": 2502
+  },
+  {
+    "genre_id": 63,
+    "title": "Bluegrass",
+    "#tracks": 178
+  },
+  {
+    "genre_id": 64,
+    "title": "Electro-Punk",
+    "#tracks": 563
+  },
+  {
+    "genre_id": 65,
+    "title": "Radio",
+    "#tracks": 518
+  },
+  {
+    "genre_id": 66,
+    "title": "Indie-Rock",
+    "#tracks": 5432
+  },
+  {
+    "genre_id": 70,
+    "title": "Industrial",
+    "#tracks": 2230
+  },
+  {
+    "genre_id": 71,
+    "title": "No Wave",
+    "#tracks": 600
+  },
+  {
+    "genre_id": 74,
+    "title": "Free-Jazz",
+    "#tracks": 1531
+  },
+  {
+    "genre_id": 76,
+    "title": "Experimental Pop",
+    "#tracks": 7144
+  },
+  {
+    "genre_id": 77,
+    "title": "French",
+    "#tracks": 387
+  },
+  {
+    "genre_id": 79,
+    "title": "Reggae - Dub",
+    "#tracks": 880
+  },
+  {
+    "genre_id": 81,
+    "title": "Afrobeat",
+    "#tracks": 110
+  },
+  {
+    "genre_id": 83,
+    "title": "Nerdcore",
+    "#tracks": 84
+  },
+  {
+    "genre_id": 85,
+    "title": "Garage",
+    "#tracks": 3548
+  },
+  {
+    "genre_id": 86,
+    "title": "Indian",
+    "#tracks": 216
+  },
+  {
+    "genre_id": 88,
+    "title": "New Wave",
+    "#tracks": 517
+  },
+  {
+    "genre_id": 89,
+    "title": "Post-Punk",
+    "#tracks": 1858
+  },
+  {
+    "genre_id": 90,
+    "title": "Sludge",
+    "#tracks": 251
+  },
+  {
+    "genre_id": 92,
+    "title": "African",
+    "#tracks": 329
+  },
+  {
+    "genre_id": 94,
+    "title": "Freak-Folk",
+    "#tracks": 1289
+  },
+  {
+    "genre_id": 97,
+    "title": "Jazz: Out",
+    "#tracks": 291
+  },
+  {
+    "genre_id": 98,
+    "title": "Progressive",
+    "#tracks": 795
+  },
+  {
+    "genre_id": 100,
+    "title": "Alternative Hip-Hop",
+    "#tracks": 740
+  },
+  {
+    "genre_id": 101,
+    "title": "Death-Metal",
+    "#tracks": 196
+  },
+  {
+    "genre_id": 102,
+    "title": "Middle East",
+    "#tracks": 176
+  },
+  {
+    "genre_id": 103,
+    "title": "Singer-Songwriter",
+    "#tracks": 4162
+  },
+  {
+    "genre_id": 107,
+    "title": "Ambient",
+    "#tracks": 7206
+  },
+  {
+    "genre_id": 109,
+    "title": "Hardcore",
+    "#tracks": 1419
+  },
+  {
+    "genre_id": 111,
+    "title": "Power-Pop",
+    "#tracks": 1003
+  },
+  {
+    "genre_id": 113,
+    "title": "Space-Rock",
+    "#tracks": 484
+  },
+  {
+    "genre_id": 117,
+    "title": "Polka",
+    "#tracks": 62
+  },
+  {
+    "genre_id": 118,
+    "title": "Balkan",
+    "#tracks": 608
+  },
+  {
+    "genre_id": 125,
+    "title": "Unclassifiable",
+    "#tracks": 1511
+  },
+  {
+    "genre_id": 130,
+    "title": "Europe",
+    "#tracks": 727
+  },
+  {
+    "genre_id": 137,
+    "title": "Americana",
+    "#tracks": 994
+  },
+  {
+    "genre_id": 138,
+    "title": "Spoken Weird",
+    "#tracks": 490
+  },
+  {
+    "genre_id": 166,
+    "title": "Interview",
+    "#tracks": 122
+  },
+  {
+    "genre_id": 167,
+    "title": "Black-Metal",
+    "#tracks": 152
+  },
+  {
+    "genre_id": 169,
+    "title": "Rockabilly",
+    "#tracks": 128
+  },
+  {
+    "genre_id": 170,
+    "title": "Easy Listening: Vocal",
+    "#tracks": 47
+  },
+  {
+    "genre_id": 171,
+    "title": "Brazilian",
+    "#tracks": 234
+  },
+  {
+    "genre_id": 172,
+    "title": "Asia-Far East",
+    "#tracks": 118
+  },
+  {
+    "genre_id": 173,
+    "title": "N. Indian Traditional",
+    "#tracks": 4
+  },
+  {
+    "genre_id": 174,
+    "title": "South Indian Traditional",
+    "#tracks": 17
+  },
+  {
+    "genre_id": 175,
+    "title": "Bollywood",
+    "#tracks": 0
+  },
+  {
+    "genre_id": 176,
+    "title": "Pacific",
+    "#tracks": 23
+  },
+  {
+    "genre_id": 177,
+    "title": "Celtic",
+    "#tracks": 72
+  },
+  {
+    "genre_id": 178,
+    "title": "Be-Bop",
+    "#tracks": 0
+  },
+  {
+    "genre_id": 179,
+    "title": "Big Band/Swing",
+    "#tracks": 104
+  },
+  {
+    "genre_id": 180,
+    "title": "British Folk",
+    "#tracks": 161
+  },
+  {
+    "genre_id": 181,
+    "title": "Techno",
+    "#tracks": 2140
+  },
+  {
+    "genre_id": 182,
+    "title": "House",
+    "#tracks": 1482
+  },
+  {
+    "genre_id": 183,
+    "title": "Glitch",
+    "#tracks": 2809
+  },
+  {
+    "genre_id": 184,
+    "title": "Minimal Electronic",
+    "#tracks": 1013
+  },
+  {
+    "genre_id": 185,
+    "title": "Breakcore - Hard",
+    "#tracks": 511
+  },
+  {
+    "genre_id": 186,
+    "title": "Sound Poetry",
+    "#tracks": 682
+  },
+  {
+    "genre_id": 187,
+    "title": "20th Century Classical",
+    "#tracks": 292
+  },
+  {
+    "genre_id": 188,
+    "title": "Poetry",
+    "#tracks": 301
+  },
+  {
+    "genre_id": 189,
+    "title": "Talk Radio",
+    "#tracks": 26
+  },
+  {
+    "genre_id": 214,
+    "title": "North African",
+    "#tracks": 40
+  },
+  {
+    "genre_id": 224,
+    "title": "Sound Collage",
+    "#tracks": 1916
+  },
+  {
+    "genre_id": 232,
+    "title": "Flamenco",
+    "#tracks": 47
+  },
+  {
+    "genre_id": 236,
+    "title": "IDM",
+    "#tracks": 3472
+  },
+  {
+    "genre_id": 240,
+    "title": "Chiptune",
+    "#tracks": 1231
+  },
+  {
+    "genre_id": 247,
+    "title": "Musique Concrete",
+    "#tracks": 2957
+  },
+  {
+    "genre_id": 250,
+    "title": "Improv",
+    "#tracks": 4261
+  },
+  {
+    "genre_id": 267,
+    "title": "New Age",
+    "#tracks": 360
+  },
+  {
+    "genre_id": 286,
+    "title": "Trip-Hop",
+    "#tracks": 1751
+  },
+  {
+    "genre_id": 296,
+    "title": "Dance",
+    "#tracks": 1414
+  },
+  {
+    "genre_id": 297,
+    "title": "Chip Music",
+    "#tracks": 2208
+  },
+  {
+    "genre_id": 311,
+    "title": "Lounge",
+    "#tracks": 440
+  },
+  {
+    "genre_id": 314,
+    "title": "Goth",
+    "#tracks": 482
+  },
+  {
+    "genre_id": 322,
+    "title": "Composed Music",
+    "#tracks": 630
+  },
+  {
+    "genre_id": 337,
+    "title": "Drum & Bass",
+    "#tracks": 500
+  },
+  {
+    "genre_id": 359,
+    "title": "Shoegaze",
+    "#tracks": 762
+  },
+  {
+    "genre_id": 360,
+    "title": "Kid-Friendly",
+    "#tracks": 201
+  },
+  {
+    "genre_id": 361,
+    "title": "Thrash",
+    "#tracks": 175
+  },
+  {
+    "genre_id": 362,
+    "title": "Synth Pop",
+    "#tracks": 1835
+  },
+  {
+    "genre_id": 374,
+    "title": "Banter",
+    "#tracks": 9
+  },
+  {
+    "genre_id": 377,
+    "title": "Deep Funk",
+    "#tracks": 1
+  },
+  {
+    "genre_id": 378,
+    "title": "Spoken Word",
+    "#tracks": 177
+  },
+  {
+    "genre_id": 400,
+    "title": "Chill-out",
+    "#tracks": 823
+  },
+  {
+    "genre_id": 401,
+    "title": "Bigbeat",
+    "#tracks": 189
+  },
+  {
+    "genre_id": 404,
+    "title": "Surf",
+    "#tracks": 265
+  },
+  {
+    "genre_id": 428,
+    "title": "Radio Theater",
+    "#tracks": 73
+  },
+  {
+    "genre_id": 439,
+    "title": "Grindcore",
+    "#tracks": 314
+  },
+  {
+    "genre_id": 440,
+    "title": "Rock Opera",
+    "#tracks": 116
+  },
+  {
+    "genre_id": 441,
+    "title": "Opera",
+    "#tracks": 161
+  },
+  {
+    "genre_id": 442,
+    "title": "Chamber Music",
+    "#tracks": 170
+  },
+  {
+    "genre_id": 443,
+    "title": "Choral Music",
+    "#tracks": 216
+  },
+  {
+    "genre_id": 444,
+    "title": "Symphony",
+    "#tracks": 25
+  },
+  {
+    "genre_id": 456,
+    "title": "Minimalism",
+    "#tracks": 1392
+  },
+  {
+    "genre_id": 465,
+    "title": "Musical Theater",
+    "#tracks": 18
+  },
+  {
+    "genre_id": 468,
+    "title": "Dubstep",
+    "#tracks": 1144
+  },
+  {
+    "genre_id": 491,
+    "title": "Skweee",
+    "#tracks": 78
+  },
+  {
+    "genre_id": 493,
+    "title": "Western Swing",
+    "#tracks": 4
+  },
+  {
+    "genre_id": 495,
+    "title": "Downtempo",
+    "#tracks": 2061
+  },
+  {
+    "genre_id": 502,
+    "title": "Cumbia",
+    "#tracks": 67
+  },
+  {
+    "genre_id": 504,
+    "title": "Latin",
+    "#tracks": 114
+  },
+  {
+    "genre_id": 514,
+    "title": "Sound Art",
+    "#tracks": 1414
+  },
+  {
+    "genre_id": 524,
+    "title": "Romany (Gypsy)",
+    "#tracks": 112
+  },
+  {
+    "genre_id": 538,
+    "title": "Compilation",
+    "#tracks": 338
+  },
+  {
+    "genre_id": 539,
+    "title": "Rap",
+    "#tracks": 638
+  },
+  {
+    "genre_id": 542,
+    "title": "Breakbeat",
+    "#tracks": 735
+  },
+  {
+    "genre_id": 567,
+    "title": "Gospel",
+    "#tracks": 66
+  },
+  {
+    "genre_id": 580,
+    "title": "Abstract Hip-Hop",
+    "#tracks": 202
+  },
+  {
+    "genre_id": 602,
+    "title": "Reggae - Dancehall",
+    "#tracks": 94
+  },
+  {
+    "genre_id": 619,
+    "title": "Spanish",
+    "#tracks": 115
+  },
+  {
+    "genre_id": 651,
+    "title": "Country & Western",
+    "#tracks": 79
+  },
+  {
+    "genre_id": 659,
+    "title": "Contemporary Classical",
+    "#tracks": 1239
+  },
+  {
+    "genre_id": 693,
+    "title": "Wonky",
+    "#tracks": 56
+  },
+  {
+    "genre_id": 695,
+    "title": "Jungle",
+    "#tracks": 258
+  },
+  {
+    "genre_id": 741,
+    "title": "Klezmer",
+    "#tracks": 57
+  },
+  {
+    "genre_id": 763,
+    "title": "Holiday",
+    "#tracks": 268
+  },
+  {
+    "genre_id": 808,
+    "title": "Salsa",
+    "#tracks": 12
+  },
+  {
+    "genre_id": 810,
+    "title": "Nu-Jazz",
+    "#tracks": 120
+  },
+  {
+    "genre_id": 811,
+    "title": "Hip-Hop Beats",
+    "#tracks": 1192
+  },
+  {
+    "genre_id": 906,
+    "title": "Modern Jazz",
+    "#tracks": 107
+  },
+  {
+    "genre_id": 1032,
+    "title": "Turkish",
+    "#tracks": 60
+  },
+  {
+    "genre_id": 1060,
+    "title": "Tango",
+    "#tracks": 30
+  },
+  {
+    "genre_id": 1156,
+    "title": "Fado",
+    "#tracks": 26
+  },
+  {
+    "genre_id": 1193,
+    "title": "Christmas",
+    "#tracks": 72
+  },
+  {
+    "genre_id": 1235,
+    "title": "Instrumental",
+    "#tracks": 14938
+  }
+]
