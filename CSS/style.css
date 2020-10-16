@@ -13,14 +13,17 @@ li {
 
 }
 header {
-
+  background: rgb(15,30,66);
+  background: linear-gradient(90deg, rgba(15,30,66,1) 0%, rgba(242,100,48,1) 100%);
 }
 main {
-    background-color: lightblue;
     flex: 1 1 auto;
+    background: rgb(12, 18, 34);
+    color: rgb(221, 221, 221);
 }
 div#tabs {
-    background-color: #575757;
+  background: rgb(25, 38, 73);
+  color: rgb(221, 221, 221);
 }
 div#tabs > ul {
     display: flex;
@@ -30,8 +33,11 @@ div#tabs li {
     padding: 0.5em;
     cursor: pointer;
 }
+div#tabs li.active {
+  background-color: rgba(242, 100, 48, 0.50);
+}
 div#tabs li:hover {
-    background-color: #00a800;
+    background-color: rgb(242,100,48);
 }
 
 h2, h3 {

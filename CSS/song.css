@@ -3,25 +3,39 @@ div#songPage {
     justify-content: center;
 }
 
-table#songList {
+table{
     width: 100%;
 }
 
-#songList th {
-    padding: 1em;
-
+table tr {
+  border: 1px solid black;
 }
 
-#songList  td {
+table th {
+    padding: 1em;
+}
+
+table  td {
     padding: 0.5em;
 }
 
-table#songList, #songList td, #songList th {
-    border: 1px solid black;
+table  td.fav {
+  padding: 0;
+}
+
+table *.songTitles{
+  column-span: 2;
+}
+
+table, table td, table th {
+ 
     border-collapse: collapse;
     text-align: center;
 }
 
+table tr:nth-child(odd) {
+  background-color: rgba(0, 204, 255, 0.05);
+}
 
 
 input.heart {
@@ -61,3 +75,10 @@ input.heart:checked + label {
 
 
 @keyframes heart {0%, 17.5% {font-size: 0;}}
+
+@media screen and (max-width: 600px) {
+  table  *.songDates {
+    display: none;
+  }
+
+}
