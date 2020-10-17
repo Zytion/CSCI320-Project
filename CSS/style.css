@@ -24,6 +24,8 @@ main {
 div#tabs {
   background: rgb(25, 38, 73);
   color: rgb(221, 221, 221);
+  display: flex;
+  flex-flow: row wrap;
 }
 div#tabs > ul {
     display: flex;
@@ -38,6 +40,9 @@ div#tabs li.active {
 }
 div#tabs li:hover {
     background-color: rgb(242,100,48);
+}
+div#tabs > div {
+  flex-basis: 100%;
 }
 
 h2, h3 {

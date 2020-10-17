@@ -74,6 +74,7 @@ let loadSongs = () => {
     `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` + 
     `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> </tr>`);
+   
     var i;
     for(i = 0; i < 10; i++)
         createSong("songList", "title" + i, "artest" + i, "album", "rock", "20:20", "1000 AD", false);
