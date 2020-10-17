@@ -19,7 +19,10 @@
             <h1>Dee's Trees Music</h1>
         </a>
         <a href="HTML/user.html">
-            <h1><i class="fa fa-user" aria-hidden="true"> Profile</i></h1>
+            <input type="text" placeholder="Username" name="username">
+            <input type="text" placeholder="Password" name="psw">      
+            <button type="submit">Login</button>
+            <!--<h1><i class="fa fa-user" aria-hidden="true"> Profile</i></h1>-->
         </a>
     </header>
     <div id="tabs">
@@ -30,6 +33,15 @@
             <li data-tab="Genres">Genres</li>
             <li data-tab="Playlists">Playlists</li>
         </ul>
+        <label for="Sort">Sort By:</label>
+        <select name="sort" id="sort">
+            <option value="name">Title</option>
+            <optgroup label="Genre">
+                <option value="rock">Rock</option>
+                <option value="classical">Classical</option>
+            </optgroup>
+        </select>
+        <input type="submit" value="Submit">
         <small>Showing Songs by name</small>
     </div>
     <div id="detailsPage">
