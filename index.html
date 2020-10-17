@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="CSS/topNav.css" />
     <link rel="stylesheet" type="text/css" href="CSS/album.css" />
     <link rel="stylesheet" type="text/css" href="CSS/song.css" />
+    <link rel="stylesheet" type="text/css" href="CSS/artist.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
     <title>CSCI 320 Project</title>
@@ -19,10 +20,7 @@
             <h1>Dee's Trees Music</h1>
         </a>
         <a href="HTML/user.html">
-            <input type="text" placeholder="Username" name="username">
-            <input type="text" placeholder="Password" name="psw">      
-            <button type="submit">Login</button>
-            <!--<h1><i class="fa fa-user" aria-hidden="true"> Profile</i></h1>-->
+            <h1>Profile</h1>
         </a>
     </header>
     <div id="tabs">
@@ -33,26 +31,28 @@
             <li data-tab="Genres">Genres</li>
             <li data-tab="Playlists">Playlists</li>
         </ul>
-        <label for="sortBy">Sort By:</label>
-        <select name="sort" id="sort">
-            <option value="name">Title</option>
-            <optgroup label="Genre">
-                <option value="rock">Rock</option>
-                <option value="classical">Classical</option>
-            </optgroup>
-        </select>
-        <input type="submit" value="Submit">
+        <div id="searchBar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        <!-- <div>
+            <label for="sortBy">Sort By:</label>
+            <select name="sort" id="sort">
+                <option value="name">Title</option>
+                <option value="name">Artist</option>
+                <option value="name">Album</option>
+                <option value="name">Genre</option>
+                </optgroup>
+            </select>
+            <input type="submit" value="Submit">
+        </div> -->
         <small>Showing Songs by name</small>
     </div>
     <div id="detailsPage">
-        <figure>
-            <img id="detailImg" src="" alt="Album Cover">
-            <div>
-                <h1>Title</h1>
-                <h2>artist</h2>
-                <h3>Genre</h3>
-            </div>
-        </figure>
+        <div>
+            <h1>Title</h1>
+            <h2>artist</h2>
+        </div>
         <table id="albumSongs">
         </table>
         <div id="albumBack">
@@ -65,28 +65,28 @@
             </table>
         </div>
         <div id="artistPage">
-            <ul id="artistList">
-                
-            </ul>
+            <table id="artistList">
+
+            </table>
         </div>
         <div id="albumPage">
-            <ul id="albumList">
-            
-            </ul>
+            <table id="albumList">
+
+            </table>
         </div>
         <div id="genrePage">
-            <ul id="genreList">
-            
-            </ul>
+            <table id="genreList">
+
+            </table>
         </div>
         <div id="playlistPage">
-            <ul id="playlistList">
-            
-            </ul>
+            <table id="playlistList">
+
+            </table>
         </div>
         <div id="dataPage">
             <ul id="dataList">
-            
+
             </ul>
         </div>
     </main>

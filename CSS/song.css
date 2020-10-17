@@ -3,40 +3,10 @@ div#songPage {
     justify-content: center;
 }
 
-table{
-    width: 100%;
-}
-
-table tr {
-  border: 1px solid black;
-}
-
-table th {
-    padding: 1em;
-}
-
-table  td {
-    padding: 0.5em;
-}
-
-table  td.fav {
-  padding: 0;
-}
 
 table *.songTitles{
   column-span: 2;
 }
-
-table, table td, table th {
- 
-    border-collapse: collapse;
-    text-align: center;
-}
-
-table tr:nth-child(odd) {
-  background-color: rgba(0, 204, 255, 0.05);
-}
-
 
 input.heart {
     position: absolute;

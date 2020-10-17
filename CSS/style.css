@@ -26,6 +26,7 @@ div#tabs {
   color: rgb(221, 221, 221);
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
 }
 div#tabs > ul {
     display: flex;
@@ -41,12 +42,60 @@ div#tabs li.active {
 div#tabs li:hover {
     background-color: rgb(242,100,48);
 }
-div#tabs > div {
+div#tabs > small {
   flex-basis: 100%;
+}
+
+div#searchBar {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+div#searchBar > input {
+  border: none;
+}
+
+div#searchBar > button {
+  border: none;
+  cursor: pointer;
+  background-color: rgb(199, 199, 199);
 }
 
 h2, h3 {
   margin: 0;
+}
+
+table{
+  width: 100%;
+}
+
+table tr {
+border: 1px solid black;
+}
+
+table th {
+  padding: 1em;
+}
+
+table  td {
+  padding: 0.5em;
+}
+
+table  td.fav {
+padding: 0;
+}
+
+table, table td, table th {
+
+  border-collapse: collapse;
+  text-align: center;
+}
+table tr:hover {
+  background-color: #f5f5f51f;
+}
+
+tr:nth-child(odd) {
+  background-color: rgba(0, 204, 255, 0.05);
 }
 
 #loadingTop, #loadingBot {

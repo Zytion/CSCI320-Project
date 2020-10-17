@@ -1,0 +1,13 @@
+div#artistPage {
+    display: flex;
+    justify-content: center;
+}
+div#artistPage table, div#artistPage table td, div#artistPage table th
+{
+    text-align: left;
+}
+
+table#artistList .fav {
+    width: 1em;
+    padding-left: 1em;
+}
