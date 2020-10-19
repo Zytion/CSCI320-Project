@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../CSS/admin.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/style.css" />
+    <link rel="stylesheet" type="text/css" href="../CSS/topNav.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+
+<body>
+    <header class="topnav" id="myTopnav">
+        <a href="../index.html" class="active">
+            <h1>Dee's Trees Music</h1>
+        </a>
+        <a href="admin.html">
+            <h1>Admin</h1>
+        </a>
+        <a href="user.html">
+            <h1>Profile</h1>
+        </a>
+    </header>
+    <div id="tabs">
+        <ul>
+            <li class="active" data-tab="Songs">Song</li>
+            <li data-tab="Artists">Artist</li>
+            <li data-tab="Albums">Album</li>
+            <li data-tab="Genres">Genre</li>
+        </ul>
+        <small>Creating a Song</small>
+    </div>
+    <main>
+        <div id="songPage">
+            <div>Title</div>
+            <input type="text" name="name" id="songTitle">
+            <div>Length</div>
+            <input type="text" name="182" id="songLength">
+            <div>Release Date</div>
+            <input type="text" name="10/08/2020" id="songDate">
+            <div>Album ID</div>
+            <input type="text" name="12" id="songAlbum">
+            <div>Artist ID</div>
+            <input type="text" name="12" id="songArtist">
+            <input type="button" value="Submit" id="songSubmit">
+        </div>
+        <div id="artistPage">
+            <div>Artist Name</div>
+            <input type="text" name="name" id="artistName">
+            <input type="button" value="Submit" id="artistSubmit">
+        </div>
+        <div id="albumPage">
+            <div>Title</div>
+            <input type="text" name="name" id="albumTitle">
+            <div>Release Date</div>
+            <input type="text" name="10/08/2020" id="albumDate">
+            <div>Artist ID</div>
+            <input type="text" name="12" id="songArtist">
+            <div>Genre ID</div>
+            <input type="text" name="12" id="songArtist">
+            <input type="button" value="Submit" id="albumSubmit">
+        </div>
+        <div id="genrePage">
+            <div>Title</div>
+            <input type="text" name="name" id="genreTitle">
+            <input type="button" value="Submit" id="genreSubmit">
+        </div>
+    </main>
+    <script src="../JS/admin.js"></script>
+</body>
+</html>

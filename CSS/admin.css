@@ -1,0 +1,23 @@
+main > div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 60%;
+    align-items: baseline;
+    column-gap: 0.5em;
+    row-gap: 0.5em;
+    grid-template-rows: repeat(10, min-content);
+}
+main > div > * {
+    height: 100%;
+}
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+input[type=button] {
+    grid-column: span 2;
+    width: 50%;
+    justify-self: center;
+}

@@ -14,7 +14,7 @@ let createAlbum = (id, title, artist, favBool) =>
     $('#albumList').append(album);
 }
 
-let createSong = (list, id, title, artist, album, genre, length, date, favBool) => {
+let createSong = (list, id, title, artist, album, genre, length, date, favBool, plays) => {
     $('#' + list).append(
         $('<tr></tr>').append(
             $('<td/>', {"class": "fav"}).append(
@@ -26,7 +26,8 @@ let createSong = (list, id, title, artist, album, genre, length, date, favBool) 
         $('<td/>', {"class": "songAlbums"}).text(album),
         $('<td/>', {"class": "songGenres"}).text(genre),
         $('<td/>', {"class": "songLengths"}).text(length),
-        $('<td/>', {"class": "songDates"}).text(date)
+        $('<td/>', {"class": "songDates"}).text(date),
+        $('<td/>', {"class": "songPlays"}).text(plays)
         ).attr('data-id', id));
 }
 let createArtist = (id, name, favBool) => {
@@ -37,7 +38,7 @@ let createArtist = (id, name, favBool) => {
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ), $('<td/>', {"class": "artistName"}).text(name)).attr('data-id', id));
 }
-let createAlbumSong = (title, genre, length, date, favBool, track) => {
+let createAlbumSong = (title, genre, length, date, favBool, track, plays) => {
     $('#albumSongs').append(
         $('<tr></tr>').append(
             $('<td/>', {"class": "fav"}).append(
@@ -48,5 +49,6 @@ let createAlbumSong = (title, genre, length, date, favBool, track) => {
         $('<td/>', {"class": "songTitles"}).text(title),
         $('<td/>', {"class": "songGenres"}).text(genre),
         $('<td/>', {"class": "songLengths"}).text(length),
-        $('<td/>', {"class": "songDates"}).text(date)));
+        $('<td/>', {"class": "songDates"}).text(date),
+        $('<td/>', {"class": "songPlays"}).text(plays)));
 }

@@ -64,10 +64,11 @@ let loadAlbum = (event) => {
     $('#albumSongs').append(
     `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` + 
     `<th class="songGenres">Genre</th>` + 
-    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th>`);
+    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
+
     var i;
     for(i = 0; i < 5; i++)
-        createAlbumSong("title" + i, "rock", "20:20", "1000 AD", false, i + 1);
+        createAlbumSong("title" + i, "rock", "20:20", "1000 AD", false, i + 1, i);
 
 
         window.scroll(0, 0);
@@ -85,9 +86,9 @@ let loadSongs = () => {
     $('#songList').append(
     `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` + 
     `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
-    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> </tr>`);
+    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
    
     var i;
     for(i = 0; i < 10; i++)
-        createSong("songList", i, "title" + i, "artest" + i, "album", "rock", "20:20", "1000 AD", false);
+        createSong("songList", i, "title" + i, "artest" + i, "album", "rock", "20:20", "1000 AD", false, i);
 }
