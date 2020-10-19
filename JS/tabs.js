@@ -117,7 +117,7 @@ let loadSongs = () => {
 
     $.getJSON(url, function( data ) {
         $.each(data.songs, function(i,song){
-            createSong("songList", i, song.title, 
+            createSong("songList", song.songID, song.title, 
                         song.artists.length > 0 ? song.artists[0].name : '', 
                         song.release.title, 
                         song.genres.length > 0 ? song.genres[0].name : '', 

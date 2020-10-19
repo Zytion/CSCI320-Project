@@ -15,5 +15,3 @@ searchBar.addEventListener("keypress", searchClick);
 
 const searchBtn = document.querySelector("#searchBtn");
 searchBar.addEventListener("click", searchClick);
-
-

@@ -1,8 +1,29 @@
+let favorited = (event) => {
+    let row = event.target.parentNode.parentNode;
+    console.log(row.getAttribute('data-id') + ": " + event.target.checked);
+
+    switch(row.className)
+    {
+        case "songRow":
+
+            break;
+        case "albumRow":
+
+            break;
+        case "artistRow":
+            
+            break;
+        case "albumSongRow":
+            
+            break;
+    }
+}
+
 let createAlbum = (id, title, artist, favBool) =>
 {
-    var album = $('<tr></tr>').append(
+    var album = $('<tr></tr>', {"class" : 'albumRow'}).append(
         $('<td/>', {"class": "fav"}).append(
-            $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}),
+            $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
             $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
     ),
     $('<td/>', {"class": "albumTitles"}).text(title),
@@ -16,10 +37,10 @@ let createAlbum = (id, title, artist, favBool) =>
 
 let createSong = (list, id, title, artist, album, genre, length, date, favBool, plays) => {
     $('#' + list).append(
-        $('<tr></tr>').append(
+        $('<tr></tr>', {"class" : 'songRow'}).append(
             $('<td/>', {"class": "fav"}).append(
-                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}),
-                $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
+                ($('<label/>', { "class": "container", "class" : "heart"}).text('❤'))
         ),
         $('<td/>', {"class": "songTitles"}).text(title),
         $('<td/>', {"class": "songArtists"}).text(artist),
@@ -34,15 +55,15 @@ let createArtist = (id, name, favBool) => {
     $('#artistList').append(
         $('<tr></tr>', {"class": "artistRow"}).append(
             $('<td/>', {"class": "fav"}).append(
-                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}),
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ), $('<td/>', {"class": "artistName"}).text(name)).attr('data-id', id));
 }
 let createAlbumSong = (title, genre, length, date, favBool, track, plays) => {
     $('#albumSongs').append(
-        $('<tr></tr>').append(
+        $('<tr></tr>', {"class" : 'albumSongRow'}).append(
             $('<td/>', {"class": "fav"}).append(
-                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}),
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ),
         $('<td/>', {"class": "trackNumber"}).text(track),
