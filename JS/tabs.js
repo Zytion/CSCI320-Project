@@ -8,13 +8,24 @@ let tabClick = (e) => {
     changeTab(e.target.dataset.tab);
 }
 
+let searchClick = (e) => {
+    if (e.key === 'Enter' || e.type ==='click'){
+        for(let li of tabs)
+        {
+            if(li.className == "active"){
+                changeTab(li.dataset.tab);
+            }
+        }
+    }
+}
+
 let small = document.querySelector("#tabs small");
-let pages = document.querySelectorAll("main > *")
+let pages = document.querySelectorAll("main > *");
+
 function changeTab(tab) {
     pages.forEach(element => {
         element.className = "hidden";
     });
-
     small.innerHTML = "Showing " + tab + " by name";
     switch(tab)
     {
@@ -38,14 +49,24 @@ function changeTab(tab) {
             break;
     }
 }
+const API_HOST = "http://music3.club";
+
 let loadArtists = () => {
     $('#artistList').empty();
     $('#artistList').append(
     `<th class="fav"></th> <th class="artistName">Name</th>`);
-   
-    var i;
-    for(i = 0; i < 10; i++)
-        createArtist(i, "artest" + i, false);
+
+    var url = API_HOST.concat('/api/artists/');
+    var searchTerm = document.querySelector('#keyword').value;
+
+    if (searchTerm != "")
+      var url = url.concat('?name=', searchTerm);
+
+    $.getJSON( url, function( data ) {
+        $.each(data.artists, function(i,artist){
+            createArtist(i, artist.name, false);
+        });
+    });
 }
 
 let loadAlbums= () => {
@@ -87,8 +108,21 @@ let loadSongs = () => {
     `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` + 
     `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
-   
-    var i;
-    for(i = 0; i < 10; i++)
-        createSong("songList", i, "title" + i, "artest" + i, "album", "rock", "20:20", "1000 AD", false, i);
+
+    var url = API_HOST.concat('/api/songs/');
+    var searchTerm = document.querySelector('#keyword').value;
+
+    if (searchTerm != "")
+      var url = url.concat('?title=', searchTerm);
+
+    $.getJSON(url, function( data ) {
+        $.each(data.songs, function(i,song){
+            createSong("songList", i, song.title, 
+                        song.artists.length > 0 ? song.artists[0].name : '', 
+                        song.release.title, 
+                        song.genres.length > 0 ? song.genres[0].name : '', 
+                        song.length, song.release.release_date, false, i);
+        });
+    });
+
 }
