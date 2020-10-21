@@ -3,6 +3,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     min-height: 100vh;
+    font-family: 'Montserrat', sans-serif;
 }
 ul {
     margin: 0;
@@ -11,18 +12,18 @@ ul {
 }
 li {
 
-}
+} 
 header {
   background: rgb(15,30,66);
-  background: linear-gradient(90deg, rgba(15,30,66,1) 0%, rgba(242,100,48,1) 100%);
+  background: linear-gradient(90deg, #007BFF 0%, #056cdb 100%);
 }
 main {
     flex: 1 1 auto;
-    background: rgb(12, 18, 34);
-    color: rgb(221, 221, 221);
+    background: #f5f5f5;
+    color: black;
 }
 div#tabs {
-  background: rgb(25, 38, 73);
+  background: #0072ed;
   color: rgb(221, 221, 221);
   display: flex;
   flex-flow: row wrap;
@@ -37,18 +38,23 @@ div#tabs li {
     cursor: pointer;
 }
 div#tabs li.active {
-  background-color: rgba(242, 100, 48, 0.50);
+  background-color: #045ebf;
 }
 div#tabs li:hover {
-    background-color: rgb(242,100,48);
+    background-color: #3697ff;
 }
+
+
 div#tabs > small {
   flex-basis: 100%;
+  padding: .25em .5em;
 }
+
 
 div#searchBar {
   display: flex;
   flex-flow: row nowrap;
+  padding: .35em .5em;
 }
 
 div#searchBar > input {
@@ -66,11 +72,11 @@ h2, h3 {
 }
 
 table{
-  width: 100%;
+  width: 99.5%;
 }
 
 table tr {
-border: 1px solid black;
+border: .5px solid #eee;
 }
 
 table th {
@@ -91,7 +97,7 @@ table, table td, table th {
   text-align: center;
 }
 table tr:hover {
-  background-color: #f5f5f51f;
+  background-color: rgba(155, 155, 155, 0.1);
 }
 
 tr:nth-child(odd) {
