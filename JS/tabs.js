@@ -49,7 +49,6 @@ function changeTab(tab) {
             break;
     }
 }
-const API_HOST = "http://music3.club";
 
 let loadArtists = () => {
     $('#artistList').empty();
@@ -60,7 +59,7 @@ let loadArtists = () => {
     var searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-      var url = url.concat('?name=', searchTerm);
+      url = url.concat('?name=', searchTerm);
 
     $.getJSON( url, function( data ) {
         $.each(data.artists, function(i,artist){
@@ -110,20 +109,28 @@ let loadSongs = () => {
     `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
 
-    var url = API_HOST.concat('/api/songs/');
-    var searchTerm = document.querySelector('#keyword').value;
+    //TODO: Mark favorite songs in the grid
+    //TODO: Find a way to display multiple artists/genres
+    //TODO: Format the release_date as mm:ss e.g. 5:34
+    let url = API_HOST.concat('/api/songs/');
+    let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-      var url = url.concat('?title=', searchTerm);
+      url = url.concat('?title=', searchTerm);
 
     $.getJSON(url, function( data ) {
-        $.each(data.songs, function(i,song){
-            createSong("songList", song.songID, song.title, 
-                        song.artists.length > 0 ? song.artists[0].name : '', 
-                        song.release.title, 
-                        song.genres.length > 0 ? song.genres[0].name : '', 
-                        song.length, song.release.release_date, false, i);
+        console.log(data);
+        $.each(data.songs, function(i, song){
+            createSong("songList",
+                        song.songID,
+                        song.title,
+                        song.artists.length > 0 ? song.artists[0].name : '',
+                        song.release.title,
+                        song.genres.length > 0 ? song.genres[0].name : '',
+                        song.length,
+                        song.release.release_date,
+                        song.favorite,
+                        0);
         });
     });
-
 }

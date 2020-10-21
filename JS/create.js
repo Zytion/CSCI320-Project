@@ -5,7 +5,21 @@ let favorited = (event) => {
     switch(row.className)
     {
         case "songRow":
-
+            let songID = row.getAttribute('data-id');
+            let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
+            console.log("Favorite song: " + songID);
+            $.ajax({
+                url: url,
+                type: event.target.checked ? 'PUT' : 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({songID: songID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " userID:" + data.userID + " songID:" + data.songID);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
             break;
         case "albumRow":
 
