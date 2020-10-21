@@ -116,13 +116,21 @@ let loadSongs = () => {
     if (searchTerm != "")
       var url = url.concat('?title=', searchTerm);
 
+    var favArray = [];
+
+    $.getJSON('http://music3.club/api/users/1/favorite-songs/', function(data) {
+        $.each(data.songs, function(i,song) {
+            favArray.push(song.songID); 
+        });
+    });
+
     $.getJSON(url, function( data ) {
         $.each(data.songs, function(i,song){
             createSong("songList", song.songID, song.title, 
                         song.artists.length > 0 ? song.artists[0].name : '', 
                         song.release.title, 
                         song.genres.length > 0 ? song.genres[0].name : '', 
-                        song.length, song.release.release_date, false, i);
+                        song.length, song.release.release_date, favArray.includes(song.songID), i);
         });
     });
 

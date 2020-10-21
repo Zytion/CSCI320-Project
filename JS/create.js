@@ -5,7 +5,28 @@ let favorited = (event) => {
     switch(row.className)
     {
         case "songRow":
-
+            if(event.target.checked)
+            {
+                $.ajax({
+                url: '/api/users/1/favorite-songs/',
+                type: 'PUT',
+                data: "songID=" + row.getAttribute('data-id'),
+                success: function(data) {
+                  alert('Put was performed.');
+                }
+              });
+            }
+            else
+            {
+                $.ajax({
+                    url: '/api/users/1/favorite-songs/',
+                    type: 'DELETE',
+                    data: "songID=" + row.getAttribute('data-id'),
+                    success: function(data) {
+                      alert('Delete was performed.');
+                    }
+                  }); 
+            }
             break;
         case "albumRow":
 
