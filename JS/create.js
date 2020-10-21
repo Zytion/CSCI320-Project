@@ -5,28 +5,21 @@ let favorited = (event) => {
     switch(row.className)
     {
         case "songRow":
-            if(event.target.checked)
-            {
-                $.ajax({
-                url: '/api/users/1/favorite-songs/',
-                type: 'PUT',
-                data: "songID=" + row.getAttribute('data-id'),
-                success: function(data) {
-                  alert('Put was performed.');
+            let songID = row.getAttribute('data-id');
+            let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-songs/');
+            console.log("Favorite song: " + songID);
+            $.ajax({
+                url: url,
+                type: event.target.checked ? 'PUT' : 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({songID: songID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " userID:" + data.userID + " songID:" + data.songID);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
                 }
-              });
-            }
-            else
-            {
-                $.ajax({
-                    url: '/api/users/1/favorite-songs/',
-                    type: 'DELETE',
-                    data: "songID=" + row.getAttribute('data-id'),
-                    success: function(data) {
-                      alert('Delete was performed.');
-                    }
-                  }); 
-            }
+            });
             break;
         case "albumRow":
 
