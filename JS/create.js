@@ -19,6 +19,12 @@ let favorited = (event) => {
     }
 }
 
+let play = (event) => 
+{
+    let row = event.target.parentNode.parentNode;
+    console.log(row.getAttribute('data-id') + ": played");
+}
+
 let createAlbum = (id, title, artist, favBool) =>
 {
     var album = $('<tr></tr>', {"class" : 'albumRow'}).append(
@@ -41,6 +47,11 @@ let createSong = (list, id, title, artist, album, genre, length, date, favBool, 
             $('<td/>', {"class": "fav"}).append(
                 $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
                 ($('<label/>', { "class": "container", "class" : "heart"}).text('❤'))
+
+        ),
+        $('<td/>', {"class": "play"}).append(
+            $('<input/>', { "type": "button", "class" : "play"}).click(play),
+            ($('<label/>', { "class": "container", "class" : "play"}).text('▷'))
         ),
         $('<td/>', {"class": "songTitles"}).text(title),
         $('<td/>', {"class": "songArtists"}).text(artist),

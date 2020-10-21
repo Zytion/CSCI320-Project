@@ -42,7 +42,38 @@ input.heart:checked + label {
   animation: heart 1s cubic-bezier(.17, .89, .32, 1.49);
 }
 
+input.play {
+  position: absolute;
+  scale: 2;
+  opacity: 0;
+}
 
+label.play {
+color: #aab8c2;
+cursor: pointer;
+font-size: 1em;
+align-self: center;  
+transition: color 0.2s ease-in-out;
+}
+
+label.play:hover {
+color: grey;
+}
+
+label.play::selection {
+color: none;
+background: transparent;
+}
+
+label.play::moz-selection {
+color: none;
+background: transparent;
+}
+
+input.play:active + label 
+{
+  color: black;
+}
 
 @keyframes heart {0%, 17.5% {font-size: 0;}}
 

@@ -105,6 +105,7 @@ let unloadAlbum = () => {
 let loadSongs = () => {
     $('#songList').empty();
     $('#songList').append(
+    `<th class="play"</th>` +
     `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` + 
     `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
