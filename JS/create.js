@@ -37,6 +37,36 @@ let play = (event) =>
 {
     let row = event.target.parentNode.parentNode;
     console.log(row.getAttribute('data-id') + ": played");
+    switch(row.className)
+    {
+        case "songRowx":
+            let songID = row.getAttribute('data-id');
+            let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/play-songs/');
+            console.log("Played song: " + songID);
+            $.ajax({
+                url: url,
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({songID: songID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " userID:" + data.userID + " songID:" + data.songID);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
+            break;
+        case "albumRow":
+
+            break;
+        case "artistRow":
+            
+            break;
+        case "albumSongRow":
+            
+            break;
+    }
+    
 }
 
 let createAlbum = (id, title, artist, favBool) =>
@@ -97,4 +127,13 @@ let createAlbumSong = (title, genre, length, date, favBool, track, plays) => {
         $('<td/>', {"class": "songLengths"}).text(length),
         $('<td/>', {"class": "songDates"}).text(date),
         $('<td/>', {"class": "songPlays"}).text(plays)));
+}
+
+let genreCreate = (id, name, favBool) => {
+    $('#genreList').append(
+        $('<tr></tr>', {"class": "genreRow"}).append(
+            $('<td/>', {"class": "fav"}).append(
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
+                $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
+        ), $('<td/>', {"class": "genreName"}).text(name)).attr('data-id', id));
 }
