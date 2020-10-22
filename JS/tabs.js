@@ -68,7 +68,7 @@ let loadArtists = () => {
     var searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-        url = url.concat('?title=', searchTerm, '&page=', pageNum);
+        url = url.concat('?name=', searchTerm, '&page=', pageNum);
     else
         url = url.concat('?page=', pageNum);
 
@@ -171,23 +171,24 @@ let loadSongs = () => {
     `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
 
-    //TODO: Mark favorite songs in the grid
+    let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
+    var favArray = [];
+
+    $.getJSON(url, function(data) {
+        $.each(data.songs, function(i,song) {
+            favArray.push(song.songID);
+        });
+    });
+
     //TODO: Find a way to display multiple artists/genres
     //TODO: Format the release_date as mm:ss e.g. 5:34
-    let url = API_HOST.concat('/api/songs/');
+    url = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
         url = url.concat('?title=', searchTerm, '&page=', pageNum);
     else
         url = url.concat('?page=', pageNum);
-    var favArray = [];
-
-    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-songs/', function(data) {
-        $.each(data.songs, function(i,song) {
-            favArray.push(song.songID); 
-        });
-    });
 
     $.getJSON(url, function( data ) {
         console.log(data);
@@ -222,28 +223,28 @@ let loadPlaylist = () => {
     $('#playlistList').empty();
     $('#playlistList').append(
     `<th class="play"</th>` +
-    `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` + 
-    `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
+    `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
+    `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` +
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
 
-    //TODO: Mark favorite songs in the grid
+    let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
+    var favArray = [];
+
+    $.getJSON(url, function(data) {
+        $.each(data.songs, function(i,song) {
+            favArray.push(song.songID);
+        });
+    });
+
     //TODO: Find a way to display multiple artists/genres
     //TODO: Format the release_date as mm:ss e.g. 5:34
-    let url = API_HOST.concat('/api/songs/');
+    url = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
         url = url.concat('?title=', searchTerm, '&page=', pageNum);
     else
         url = url.concat('?page=', pageNum);
-
-    var favArray = [];
-
-    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-songs/', function(data) {
-        $.each(data.songs, function(i,song) {
-            favArray.push(song.songID); 
-        });
-    });
 
     $.getJSON(url, function( data ) {
         console.log(data);

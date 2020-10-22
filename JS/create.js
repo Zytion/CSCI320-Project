@@ -53,7 +53,7 @@ let play = (event) =>
     console.log(row.getAttribute('data-id') + ": played");
     switch(row.className)
     {
-        case "songRowx":
+        case "songRow":
             let songID = row.getAttribute('data-id');
             let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/play-songs/');
             console.log("Played song: " + songID);
@@ -63,7 +63,7 @@ let play = (event) =>
                 contentType: 'application/json',
                 data: JSON.stringify({songID: songID}),
                 success: function (data, status) {
-                    console.log("status:" + status + " userID:" + data.userID + " songID:" + data.songID);
+                    console.log("status:" + status + " playID:" + data.playID + " playDate:" + data.playDate);
                 },
                 error: function (xhr, status, error) {
                     console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
