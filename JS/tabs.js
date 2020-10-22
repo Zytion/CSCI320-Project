@@ -1,4 +1,5 @@
 let tabClick = (e) => {
+    pageNum = 1;
     for(let li of tabs)
     {
         li.className = "";
@@ -6,7 +7,6 @@ let tabClick = (e) => {
             li.className = "active";
     }
     changeTab(e.target.dataset.tab);
-    pageNum = 1;
 }
 
 let searchClick = (e) => {
@@ -93,7 +93,7 @@ let loadAlbums= () => {
 
     var favArray = [];
 
-    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-releases/', function(data) {
+    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
         $.each(data.releases, function(i,release) {
             favArray.push(release.releaseID); 
         });
@@ -136,7 +136,7 @@ let loadAlbum = (event) => {
 
     var favArray = [];
 
-    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-releases/', function(data) {
+    $.getJSON(API_HOST.concat('api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
         $.each(data.albums, function(i,album) {
             favArray.push(album.albumID); 
         });
@@ -262,7 +262,7 @@ let loadPlaylist = () => {
                         favArray.includes(song.songID),
                         0);
             }
-
+            
         });
     });
 }
@@ -281,7 +281,7 @@ let loadGeneres = () => {
 
     var favArray = [];
 
-    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-genres/', function(data) {
+    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-genres/'), function(data) {
         $.each(data.genres, function(i,genre) {
             favArray.push(genreID.genreID); 
         });
