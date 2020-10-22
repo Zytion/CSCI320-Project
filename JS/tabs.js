@@ -6,6 +6,7 @@ let tabClick = (e) => {
             li.className = "active";
     }
     changeTab(e.target.dataset.tab);
+    pageNum = 1;
 }
 
 let searchClick = (e) => {
@@ -22,9 +23,10 @@ let searchClick = (e) => {
 
 let small = document.querySelector("#tabs small");
 let pages = document.querySelectorAll("main > *");
-
+var currentTab;
 
 function changeTab(tab) {
+    currentTab = tab;
     pages.forEach(element => {
         element.className = "hidden";
     });
@@ -35,7 +37,6 @@ function changeTab(tab) {
     switch(tab)
     {
         case "Songs":
-            pageNum = 1;
             loadSongs();
             pages[0].className = "";
             break;
@@ -82,7 +83,7 @@ let loadAlbums= () => {
     $('#albumList').empty();
     $('#albumList').append(
     `<th class="fav"></th> <th class="albumTitles">Title</th> <th class="albumArtists">Artist</th>`);
-    let url = API_HOST.concat('/api/albums');
+    let url = API_HOST.concat('/api/releases');
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
@@ -92,7 +93,50 @@ let loadAlbums= () => {
 
     var favArray = [];
 
-    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-albums/', function(data) {
+    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-releases/', function(data) {
+        $.each(data.releases, function(i,release) {
+            favArray.push(release.releaseID); 
+        });
+    });
+
+    $.getJSON(url, function( data ) {
+        //console.log(data);
+        $.each(data.releases, function(i, release){
+            let artists = release.artists;
+            let artComp = artists[0].name;
+            for(let i = 1; i < artists.length; i++)
+            {
+                artComp = artComp.concat(", ", artists[i].name);
+            }
+            createAlbum(
+                    release.releaseID,
+                    release.title,
+                    artComp,
+                    favArray.includes(release.releaseID));
+        });
+    });
+}
+
+let loadAlbum = (event) => {
+    console.log('Load album id: ' + event.currentTarget.getAttribute('data-id'));
+    
+    $('#albumSongs').empty();
+    $('#albumSongs').append(
+    `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` + 
+    `<th class="songGenres">Genre</th>` + 
+    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
+
+    let url = API_HOST.concat('/api/releases');
+    let searchTerm = document.querySelector('#keyword').value;
+
+    if (searchTerm != "")
+        url = url.concat('?title=', searchTerm, '&page=', pageNum);
+    else
+        url = url.concat('?page=', pageNum);
+
+    var favArray = [];
+
+    $.getJSON('http://music3.club/api/users/' + DEFAULT_USERID + '/favorite-releases/', function(data) {
         $.each(data.albums, function(i,album) {
             favArray.push(album.albumID); 
         });
@@ -108,22 +152,8 @@ let loadAlbums= () => {
                     favArray.includes(album.albumID));
         });
     });
-}
 
-let loadAlbum = (event) => {
-    console.log('Load album id: ' + event.currentTarget.getAttribute('data-id'));
-    
-    $('#albumSongs').empty();
-    $('#albumSongs').append(
-    `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` + 
-    `<th class="songGenres">Genre</th>` + 
-    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
-
-    var i;
-    for(i = 0; i < 5; i++)
-        createAlbumSong("title" + i, "rock", "20:20", "1000 AD", false, i + 1, i);
-
-        window.scroll(0, 0);
+    window.scroll(0, 0);
     $('#detailsPage').slideToggle("slow", function(){
         $('main').hide();
     });
@@ -179,13 +209,13 @@ let loadPrevPage = () => {
     if(pageNum > 1)
     {
         pageNum--;
-        loadSongs();
+        changeTab(currentTab);
     }
 }
 
 let loadNextPage = () => {
     pageNum++;
-    loadSongs();
+    changeTab(currentTab);
 }
 
 let loadPlaylist = () => {

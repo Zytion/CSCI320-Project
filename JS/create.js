@@ -1,12 +1,12 @@
 let favorited = (event) => {
     let row = event.target.parentNode.parentNode;
     console.log(row.getAttribute('data-id') + ": " + event.target.checked);
-
+    let url = API_HOST.concat('/api/users/' + DEFAULT_USERID);
     switch(row.className)
     {
         case "songRow":
             let songID = row.getAttribute('data-id');
-            let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-songs/');
+            url = url + '/favorite-songs/';
             console.log("Favorite song: " + songID);
             $.ajax({
                 url: url,
@@ -22,7 +22,21 @@ let favorited = (event) => {
             });
             break;
         case "albumRow":
-
+            let releaseID = row.getAttribute('data-id');
+            url = url + '/favorite-releases/';
+            console.log("Favorite album: " + releaseID);
+            $.ajax({
+                url: url,
+                type: event.target.checked ? 'PUT' : 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({releaseID: releaseID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " userID:" + data.userID + " releaseID:" + data.releaseID);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
             break;
         case "artistRow":
             
@@ -79,7 +93,7 @@ let createAlbum = (id, title, artist, favBool) =>
     $('<td/>', {"class": "albumTitles"}).text(title),
     $('<td/>', {"class": "albumArtists"}).text(artist));
     
-    album.click(loadAlbum);
+    //album.click(loadAlbum);
     album.attr('data-id', id);
 
     $('#albumList').append(album);
