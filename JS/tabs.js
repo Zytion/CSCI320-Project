@@ -75,9 +75,9 @@ let loadArtists = () => {
 
     let favArray = [];
 
-    $.getJSON(API_HOST.concat('api/users/' + DEFAULT_USERID + '/favorite-albums/'), function(data) {
-        $.each(data.albums, function(i,album) {
-            favArray.push(album.albumID); 
+    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-artists/'), function(data) {
+        $.each(data.artists, function(i,artist) {
+            favArray.push(artist.artistID); 
         });
     });
 
@@ -148,7 +148,7 @@ let loadAlbum = (event) => {
 
     let favArray = [];
 
-    $.getJSON(API_HOST.concat('api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
+    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
         $.each(data.albums, function(i,album) {
             favArray.push(album.albumID); 
         });
