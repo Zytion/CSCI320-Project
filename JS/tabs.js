@@ -72,9 +72,21 @@ let loadArtists = () => {
     else
         url = url.concat('?page=', pageNum);
 
+
+    let favArray = [];
+
+    $.getJSON(API_HOST.concat('api/users/' + DEFAULT_USERID + '/favorite-albums/'), function(data) {
+        $.each(data.albums, function(i,album) {
+            favArray.push(album.albumID); 
+        });
+    });
+
     $.getJSON( url, function( data ) {
         $.each(data.artists, function(i,artist){
-            createArtist(i, artist.name, false);
+            createArtist(
+                artist.artistID, 
+                artist.name, 
+                favArray.includes(artist.artistID));
         });
     });
 }
@@ -91,7 +103,7 @@ let loadAlbums= () => {
     else
         url = url.concat('?page=', pageNum);
 
-    var favArray = [];
+    let favArray = [];
 
     $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
         $.each(data.releases, function(i,release) {
@@ -134,7 +146,7 @@ let loadAlbum = (event) => {
     else
         url = url.concat('?page=', pageNum);
 
-    var favArray = [];
+    let favArray = [];
 
     $.getJSON(API_HOST.concat('api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
         $.each(data.albums, function(i,album) {
@@ -143,7 +155,7 @@ let loadAlbum = (event) => {
     });
 
     $.getJSON(url, function( data ) {
-        console.log(data);
+        //console.log(data);
         $.each(data.albums, function(i, album){
             createAlbum(
                     album.albumID,
@@ -172,7 +184,7 @@ let loadSongs = () => {
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
-    var favArray = [];
+    let favArray = [];
 
     $.getJSON(url, function(data) {
         $.each(data.songs, function(i,song) {
@@ -191,7 +203,7 @@ let loadSongs = () => {
         url = url.concat('?page=', pageNum);
 
     $.getJSON(url, function( data ) {
-        console.log(data);
+        //console.log(data);
         $.each(data.songs, function(i, song){
             createSong("songList",
                         song.songID,
@@ -228,7 +240,7 @@ let loadPlaylist = () => {
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
-    var favArray = [];
+    let favArray = [];
 
     $.getJSON(url, function(data) {
         $.each(data.songs, function(i,song) {
@@ -247,7 +259,7 @@ let loadPlaylist = () => {
         url = url.concat('?page=', pageNum);
 
     $.getJSON(url, function( data ) {
-        console.log(data);
+        //console.log(data);
         $.each(data.songs, function(i, song){
             if(favArray.includes(song.songID))
             {
@@ -288,7 +300,7 @@ let loadGeneres = () => {
     });
 
     $.getJSON(url, function( data ) {
-        console.log(data);
+        //console.log(data);
         $.each(data.genres, function(i, genre){
             genreCreate(
                         genre.genreID,

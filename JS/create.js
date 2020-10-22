@@ -39,7 +39,21 @@ let favorited = (event) => {
             });
             break;
         case "artistRow":
-            
+            let artistsID = row.getAttribute('data-id');
+            url = url + '/favorite-artists/';
+            console.log("Favorite artists: " + artistsID);
+            $.ajax({
+                url: url,
+                type: event.target.checked ? 'PUT' : 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({artistsID: artistsID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " userID:" + data.userID + " releaseID:" + data.artistsID);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
             break;
         case "albumSongRow":
             
