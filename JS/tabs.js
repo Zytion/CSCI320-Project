@@ -192,8 +192,6 @@ let loadSongs = () => {
         });
     });
 
-    //TODO: Find a way to display multiple artists/genres
-    //TODO: Format the release_date as mm:ss e.g. 5:34
     url = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
 
@@ -205,13 +203,34 @@ let loadSongs = () => {
     $.getJSON(url, function( data ) {
         //console.log(data);
         $.each(data.songs, function(i, song){
+            let genres = song.genres[0].name; 
+            let length = song.genres.length;
+            if(length > 3)
+                length = 3;
+            for(let i = 1; i < length; i++)
+            {
+                genres = genres.concat(', ' + song.genres[i].name);
+            }
+           
+            let artists = song.artists[0].name;
+            length = song.artists.length;
+            if(length > 3)
+                length = 3;
+            for(let i = 1; i < length; i++)
+            {
+                artists = artists.concat(', ' + song.artists[i].name);
+            }
+
+            let songSeconds = song.length % 60;
+            if(songSeconds < 10)
+                songSeconds += '0';
             createSong("songList",
                         song.songID,
                         song.title,
-                        song.artists.length > 0 ? song.artists[0].name : '',
+                        artists,
                         song.release.title,
-                        song.genres.length > 0 ? song.genres[0].name : '',
-                        song.length,
+                        genres,
+                        Math.trunc(song.length / 60) + ":" + songSeconds,
                         song.release.release_date,
                         favArray.includes(song.songID),
                         0);
@@ -248,8 +267,6 @@ let loadPlaylist = () => {
         });
     });
 
-    //TODO: Find a way to display multiple artists/genres
-    //TODO: Format the release_date as mm:ss e.g. 5:34
     url = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
 
@@ -261,15 +278,36 @@ let loadPlaylist = () => {
     $.getJSON(url, function( data ) {
         //console.log(data);
         $.each(data.songs, function(i, song){
+            let genres = song.genres[0].name; 
+            let length = song.genres.length;
+            if(length > 3)
+                length = 3;
+            for(let i = 1; i < length; i++)
+            {
+                genres = genres.concat(', ' + song.genres[i].name);
+            }
+            
+            let artists = song.artists[0].name;
+            length = song.artists.length;
+            if(length > 3)
+                length = 3;
+            for(let i = 1; i < length; i++)
+            {
+                artists = artists.concat(', ' + song.artists[i].name);
+            }
+
+            let songSeconds = song.length % 60;
+            if(songSeconds < 10)
+                songSeconds += '0';
             if(favArray.includes(song.songID))
             {
                     createSong("playlistList",
                         song.songID,
                         song.title,
-                        song.artists.length > 0 ? song.artists[0].name : '',
+                        artists,
                         song.release.title,
-                        song.genres.length > 0 ? song.genres[0].name : '',
-                        song.length,
+                        genres,
+                        Math.trunc(song.length / 60) + ":" + songSeconds,
                         song.release.release_date,
                         favArray.includes(song.songID),
                         0);
