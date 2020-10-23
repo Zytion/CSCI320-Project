@@ -1,0 +1,49 @@
+ul#releaseList {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-content: space-between;
+}
+
+li.release {
+    width: 20%;
+    padding: 1em;
+}
+li.release figure {
+    margin: 0;
+}
+li.release img {
+    width: 100%;
+}
+
+li.release div {
+}
+
+#detailsPage {
+    flex: 1 1 auto;
+    width: 100vw;
+    color: rgb(221, 221, 221);
+    background-color: rgba(242, 100, 48);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+#detailsPage > figure {
+    display: flex;
+    flex-flow: row nowrap;
+}
+#detailsPage > figure > img {
+    padding: 1em;
+    height: 12em;
+}
+#detailsPage > figure > div {
+    display: flex;
+    flex-flow: column nowrap;
+}
+#releaseBack {
+    background-color: rgba(0, 0, 0, 0.1);
+    font-size: 3em;
+    width:100%;
+    text-align: center;
+    bottom:0px;
+}

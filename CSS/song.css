@@ -1,9 +1,14 @@
-div#songPage {
+div#playlistPage {
     display: flex;
     justify-content: center;
     flex-flow: column nowrap;
 }
 
+div#songPage {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
 
 table *.songTitles{
   column-span: 2;

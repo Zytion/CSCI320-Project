@@ -32,7 +32,7 @@
         <ul>
             <li class="active" data-tab="Songs">Songs</li>
             <li data-tab="Artists">Artists</li>
-            <li data-tab="Albums">Albums</li>
+            <li data-tab="Releases">Releases</li>
             <li data-tab="Genres">Genres</li>
             <li data-tab="Favorite Songs">Favorite Songs</li>
             <li data-tab="favArtists">Favorite Artists</li>
@@ -56,7 +56,7 @@
             <select name="sort" id="sort">
                 <option value="name">Title</option>
                 <option value="name">Artist</option>
-                <option value="name">Album</option>
+                <option value="name">release</option>
                 <option value="name">Genre</option>
                 </optgroup>
             </select>
@@ -66,12 +66,12 @@
     </div>
     <div id="detailsPage">
         <div>
-            <h1 id="albumDetailTitle">Title</h1>
-            <h2 id="albumDetailArtist">artist</h2>
+            <h1 id="releaseDetailTitle">Title</h1>
+            <h2 id="releaseDetailArtist">artist</h2>
         </div>
-        <table id="albumSongs">
+        <table id="releaseSongs">
         </table>
-        <div id="albumBack">
+        <div id="releaseBack">
             <i class="fa fa-angle-up" aria-hidden="true"></i>
         </div>
     </div>
@@ -85,13 +85,8 @@
 
             </table>
         </div>
-        <div id="albumPage">
-            <table id="albumList">
-
-            </table>
-        </div>
-        <div id="genrePage">
-            <table id="genreList">
+        <div id="releasePage">
+            <table id="releaseList">
 
             </table>
         </div>
