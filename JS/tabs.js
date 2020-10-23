@@ -150,7 +150,9 @@ let loadSongs = () => {
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-      url = url.concat('?title=', searchTerm);
+        url = url.concat('?title=', searchTerm, '&page=', pageNum);
+    else
+        url = url.concat('?page=', pageNum);
 
     $.getJSON(url, function( data ) {
         $.each(data.songs, function(i, song){
