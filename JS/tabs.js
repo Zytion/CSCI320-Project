@@ -64,9 +64,9 @@ let loadArtists = () => {
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-        url = url.concat('?name=', searchTerm, '&page=', pageNum);
+        url = url.concat('?name=', searchTerm, '&page=', pageNum, '&user=', DEFAULT_USERID);
     else
-        url = url.concat('?page=', pageNum);
+        url = url.concat('?page=', pageNum, '&user=', DEFAULT_USERID);
 
     $.getJSON( url, function( data ) {
         $.each(data.artists, function(i,artist){
@@ -91,9 +91,9 @@ let loadReleases= () => {
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-        url = url.concat('?title=', searchTerm, '&page=', pageNum);
+        url = url.concat('?title=', searchTerm, '&page=', pageNum, '&user=', DEFAULT_USERID);
     else
-        url = url.concat('?page=', pageNum);
+        url = url.concat('?page=', pageNum, '&user=', DEFAULT_USERID);
 
     $.getJSON(url, function( data ) {
         $.each(data.releases, function(i, release){
@@ -150,9 +150,9 @@ let loadSongs = () => {
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-        url = url.concat('?title=', searchTerm, '&page=', pageNum);
+        url = url.concat('?title=', searchTerm, '&page=', pageNum, '&user=', DEFAULT_USERID);
     else
-        url = url.concat('?page=', pageNum);
+        url = url.concat('?page=', pageNum, '&user=', DEFAULT_USERID);
 
     $.getJSON(url, function( data ) {
         $.each(data.songs, function(i, song){
