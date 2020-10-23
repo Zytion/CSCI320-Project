@@ -54,7 +54,6 @@ function changeTab(tab) {
             pages[4].className = "";
             break;
         case "favArtists":
-
             pages[5].className = "";
             break;
         case "favAlbums":
@@ -209,9 +208,9 @@ let loadFavoriteSongs = () => {
                 createSong("favSongs",
                     data.songID,
                     data.title,
-                    getSongArtists(data),
+                    getArtists(data),
                     data.release.title,
-                    getSongGeneres(data),
+                    getGeneres(data),
                     getSongTime(data),
                     data.release.release_date,
                     true,
@@ -241,9 +240,9 @@ let loadPlaylist = () => {
             createPlayedSong("playlistList",
                 play.song.songID,
                 play.song.title,
-                getArtists(play),
+                getArtists(play.song),
                 play.song.release.title,
-                getSongTime(play),
+                getSongTime(play.song),
                 play.playDate,
                 play.song.favorite);
         });
