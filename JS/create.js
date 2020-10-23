@@ -39,16 +39,16 @@ let favorited = (event) => {
             });
             break;
         case "artistRow":
-            let artistsID = row.getAttribute('data-id');
+            let artistID = row.getAttribute('data-id');
             url = url + '/favorite-artists/';
-            console.log("Favorite artists: " + artistsID);
+            console.log("Favorite artists: " + artistID);
             $.ajax({
                 url: url,
                 type: event.target.checked ? 'PUT' : 'DELETE',
                 contentType: 'application/json',
-                data: JSON.stringify({artistsID: artistsID}),
+                data: JSON.stringify({artistID: artistID}),
                 success: function (data, status) {
-                    console.log("status:" + status + " userID:" + data.userID + " releaseID:" + data.artistsID);
+                    console.log("status:" + status + " userID:" + data.userID + " artistID:" + data.artistID);
                 },
                 error: function (xhr, status, error) {
                     console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
