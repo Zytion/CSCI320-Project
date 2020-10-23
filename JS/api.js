@@ -16,10 +16,13 @@ function getGeneres(data){
     return "";
   let genres = data.genres[0].name;
   let length = data.genres.length;
-  if (length > 3)
-      length = 3;
-  for (let i = 1; i < length; i++) {
-      genres = genres.concat(', ' + data.genres[i].name);
+  if (length > 0){
+      genres = data.genres[0].name;
+      if (length > 3)
+          length = 3;
+      for (let i = 1; i < length; i++) {
+          genres = genres.concat(', ' + data.genres[i].name);
+      }
   }
   return genres;
 }

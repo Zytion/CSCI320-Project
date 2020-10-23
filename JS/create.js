@@ -82,6 +82,11 @@ let play = (event) =>
                 },
                 error: function (xhr, status, error) {
                     console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                },
+                complete: function (xhr, status) {
+                    console.log("Update Songslist");
+                    //TODO: How can we update the favoriteSongs list when play was clicked from songs
+                    loadSongs();
                 }
             });
             break;
