@@ -2,7 +2,7 @@ window.onload = function load()
 {
     $('#detailsPage').hide();
     changeTab("Songs");
-    $('#albumBack').click(unloadAlbum);
+    $('#releaseBack').click(unloadRelease);
 
     $('#nextPageButton').click(loadNextPage);
     $('#prevPageButton').click(loadPrevPage);

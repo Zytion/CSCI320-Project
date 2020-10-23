@@ -31,7 +31,9 @@ function changeTab(tab) {
         case "Artists":
             pages[1].className = "";
             break;
-        case "Albums":
+        case "Releases":
+            console.log("here")
+            console.log(pages)
             pages[2].className = "";
             break;
         case "Genres":
