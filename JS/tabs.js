@@ -220,6 +220,9 @@ let loadPlaylist = () => {
         `<th class="songLengths">Length</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/play-songs/');
+
+    url = url.concat('?page=', pageNum);
+
     $.getJSON(url, function( data ) {
         $.each(data.playlist, function(i, play){
             let artists = '';
