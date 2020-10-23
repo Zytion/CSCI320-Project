@@ -12,23 +12,29 @@ let getSongs = () =>
 
 
 function getGeneres(data){
-  let genres = data.genres[0].name;
+  let genres = '';
   let length = data.genres.length;
-  if (length > 3)
-      length = 3;
-  for (let i = 1; i < length; i++) {
-      genres = genres.concat(', ' + data.genres[i].name);
+  if (length > 0){
+      genres = data.genres[0].name;
+      if (length > 3)
+          length = 3;
+      for (let i = 1; i < length; i++) {
+          genres = genres.concat(', ' + data.genres[i].name);
+      }
   }
   return genres;
 }
 
 function getArtists(data){
-  let artists = data.artists[0].name;
-  length = data.artists.length;
-  if (length > 3)
-      length = 3;
-  for (let i = 1; i < length; i++) {
-      artists = artists.concat(', ' + data.artists[i].name);
+  let artists = '';
+  let length = data.artists.length;
+  if (length > 0){
+      artists = data.artists[0].name;
+      if (length > 3)
+          length = 3;
+      for (let i = 1; i < length; i++) {
+          artists = artists.concat(', ' + data.artists[i].name);
+      }
   }
   return artists;
 }

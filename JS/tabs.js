@@ -181,7 +181,7 @@ let loadSongs = () => {
                 getSongTime(song),
                 song.release.release_date,
                 song.favorite,
-                0);
+                song.play_count);
         });
     });
 }
@@ -234,7 +234,7 @@ let loadFavoriteSongs = () => {
                     getSongTime(data),
                     data.release.release_date,
                     true,
-                    0);
+                    data.play_count);
             });
         });
     });
