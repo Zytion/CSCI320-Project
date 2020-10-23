@@ -114,10 +114,9 @@ let play = (event) =>
 
 }
 
-let createRelease = (id, title, artist, type, releaseDate, favBool) =>
+let createRelease = (list, id, title, artist, type, releaseDate, favBool) =>
 {
     var release = $('<tr></tr>', {"class" : 'releaseRow'}).append(
-
         $('<td/>', {"class": "fav"}).append(
             $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
             $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
@@ -130,7 +129,7 @@ let createRelease = (id, title, artist, type, releaseDate, favBool) =>
     //release.click(loadRelease);
     release.attr('data-id', id);
 
-    $('#releaseList').append(release);
+    $('#' + list).append(release);
 }
 
 let createSong = (list, id, title, artist, release, genre, length, date, favBool, plays) => {
@@ -174,8 +173,8 @@ let createPlayedSong = (list, id, title, artist, release, length, playDate, favB
         ).attr('data-id', id));
 }
 
-let createArtist = (id, name, favBool) => {
-    $('#artistList').append(
+let createArtist = (list, id, name, favBool) => {
+    $('#' + list).append(
         $('<tr></tr>', {"class": "artistRow"}).append(
             $('<td/>', {"class": "fav"}).append(
                 $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
