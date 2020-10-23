@@ -6,6 +6,7 @@ let tabClick = (e) => {
             li.className = "active";
     }
     changeTab(e.target.dataset.tab);
+    document.querySelector('#keyword').value = "";
 }
 
 let searchClick = (e) => {
@@ -130,19 +131,29 @@ let loadReleases = () => {
 }
 
 let loadRelease = (event) => {
-    console.log('Load release id: ' + event.currentTarget.getAttribute('data-id'));
-
     $('#releaseSongs').empty();
     $('#releaseSongs').append(
         `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` +
         `<th class="songGenres">Genre</th>` +
         `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
-
-    var i;
-    for (i = 0; i < 5; i++)
-        createReleaseSong("title" + i, "rock", "20:20", "1000 AD", false, i + 1, i);
-
-
+    
+    let url = API_HOST.concat('/api/releases/' + event.currentTarget.getAttribute('data-id'));
+    $.getJSON(url, function (data) {
+        $('#releaseDetailTitle').text(data.title);
+        $('#releaseDetailArtist').text(getArtists(data));
+        $.each(data.songs, function (i, song) {
+            createReleaseSong(
+                song.songID,
+                song.title,
+                getGeneres(song),
+                getSongTime(song),
+                song.release.release_date,
+                song.favorite,
+                song.track_number,
+                0);
+        });
+    });
+    
     window.scroll(0, 0);
     $('#detailsPage').slideToggle("slow", function () {
         $('main').hide();

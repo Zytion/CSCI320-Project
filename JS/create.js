@@ -126,7 +126,7 @@ let createRelease = (list, id, title, artist, type, releaseDate, favBool) =>
     $('<td/>', {"class": "releaseTypes"}).text(type),
     $('<td/>', {"class": "releaseDates"}).text(releaseDate));
     
-    //release.click(loadRelease);
+    release.click(loadRelease);
     release.attr('data-id', id);
 
     $('#' + list).append(release);
@@ -181,9 +181,9 @@ let createArtist = (list, id, name, favBool) => {
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ), $('<td/>', {"class": "artistName"}).text(name)).attr('data-id', id));
 }
-let createReleaseSong = (title, genre, length, date, favBool, track, plays) => {
+let createReleaseSong = (id, title, genre, length, date, favBool, track, plays) => {
     $('#releaseSongs').append(
-        $('<tr></tr>').append(
+        $('<tr></tr>', {"class" : 'songRow'}).append(
             $('<td/>', {"class": "fav"}).append(
                 $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
@@ -193,7 +193,7 @@ let createReleaseSong = (title, genre, length, date, favBool, track, plays) => {
         $('<td/>', {"class": "songGenres"}).text(genre),
         $('<td/>', {"class": "songLengths"}).text(length),
         $('<td/>', {"class": "songDates"}).text(date),
-        $('<td/>', {"class": "songPlays"}).text(plays)));
+        $('<td/>', {"class": "songPlays"}).text(plays)).attr('data-id', id));
 }
 
 let genreCreate = (id, name) => {

@@ -12,6 +12,8 @@ let getSongs = () =>
 
 
 function getGeneres(data){
+  if(data.genres.length == 0)
+    return "";
   let genres = data.genres[0].name;
   let length = data.genres.length;
   if (length > 3)
@@ -23,6 +25,8 @@ function getGeneres(data){
 }
 
 function getArtists(data){
+  if(data.artists.length == 0)
+    return "";
   let artists = data.artists[0].name;
   length = data.artists.length;
   if (length > 3)

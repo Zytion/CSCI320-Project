@@ -40,7 +40,7 @@ li.album div {
     display: flex;
     flex-flow: column nowrap;
 }
-#albumBack {
+#releaseBack {
     background-color: rgba(0, 0, 0, 0.1);
     font-size: 3em;
     width:100%;
