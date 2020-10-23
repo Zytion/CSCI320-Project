@@ -30,7 +30,7 @@ function changeTab(tab) {
     pages.forEach(element => {
         element.className = "hidden";
     });
-    
+
     document.querySelector('#pageButtons').className = "";
 
     small.innerHTML = "Showing " + tab + " by name";
@@ -44,17 +44,13 @@ function changeTab(tab) {
             loadArtists();
             pages[1].className = "";
             break;
-        case "Albums":
-            loadAlbums();
+        case "Releases":
+            loadReleases();
             pages[2].className = "";
-            break;
-        case "Genres":
-            loadGeneres();
-            pages[3].className = "";
             break;
         case "Playlists":
             loadPlaylist();
-            pages[4].className = "";
+            pages[3].className = "";
             break;
     }
 }
@@ -64,37 +60,33 @@ let loadArtists = () => {
     $('#artistList').append(
     `<th class="fav"></th> <th class="artistName">Name</th>`);
 
-    var url = API_HOST.concat('/api/artists/');
-    var searchTerm = document.querySelector('#keyword').value;
+    let url = API_HOST.concat('/api/artists/');
+    let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
         url = url.concat('?name=', searchTerm, '&page=', pageNum);
     else
         url = url.concat('?page=', pageNum);
 
-
-    let favArray = [];
-
-    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-artists/'), function(data) {
-        $.each(data.artists, function(i,artist) {
-            favArray.push(artist.artistID); 
-        });
-    });
-
     $.getJSON( url, function( data ) {
         $.each(data.artists, function(i,artist){
             createArtist(
-                artist.artistID, 
-                artist.name, 
-                favArray.includes(artist.artistID));
+                artist.artistID,
+                artist.name,
+                artist.favorite);
         });
     });
 }
 
-let loadAlbums= () => {
-    $('#albumList').empty();
-    $('#albumList').append(
-    `<th class="fav"></th> <th class="albumTitles">Title</th> <th class="albumArtists">Artist</th>`);
+let loadReleases= () => {
+
+    $('#releaseList').empty();
+    $('#releaseList').append(
+    `<th class="fav"></th>` +
+        `<th class="releaseTitles">Title</th>` +
+        `<th class="releaseArtists">Artist</th>` +
+        `<th class="releaseTypes">Type</th>` +
+        `<th class="releaseDates">Release Date</th>`);
     let url = API_HOST.concat('/api/releases');
     let searchTerm = document.querySelector('#keyword').value;
 
@@ -103,16 +95,7 @@ let loadAlbums= () => {
     else
         url = url.concat('?page=', pageNum);
 
-    let favArray = [];
-
-    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
-        $.each(data.releases, function(i,release) {
-            favArray.push(release.releaseID); 
-        });
-    });
-
     $.getJSON(url, function( data ) {
-        //console.log(data);
         $.each(data.releases, function(i, release){
             let artists = release.artists;
             let artComp = artists[0].name;
@@ -120,57 +103,37 @@ let loadAlbums= () => {
             {
                 artComp = artComp.concat(", ", artists[i].name);
             }
-            createAlbum(
+            createRelease(
                     release.releaseID,
                     release.title,
                     artComp,
-                    favArray.includes(release.releaseID));
+                    release.type,
+                    release.release_date,
+                    release.favorite);
         });
     });
 }
 
-let loadAlbum = (event) => {
-    console.log('Load album id: ' + event.currentTarget.getAttribute('data-id'));
+let loadRelease = (event) => {
+    console.log('Load release id: ' + event.currentTarget.getAttribute('data-id'));
     
-    $('#albumSongs').empty();
-    $('#albumSongs').append(
+    $('#releaseSongs').empty();
+    $('#releaseSongs').append(
     `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` + 
     `<th class="songGenres">Genre</th>` + 
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
 
-    let url = API_HOST.concat('/api/releases');
-    let searchTerm = document.querySelector('#keyword').value;
+    var i;
+    for(i = 0; i < 5; i++)
+        createReleaseSong("title" + i, "rock", "20:20", "1000 AD", false, i + 1, i);
 
-    if (searchTerm != "")
-        url = url.concat('?title=', searchTerm, '&page=', pageNum);
-    else
-        url = url.concat('?page=', pageNum);
 
-    let favArray = [];
-
-    $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-releases/'), function(data) {
-        $.each(data.albums, function(i,album) {
-            favArray.push(album.albumID); 
-        });
-    });
-
-    $.getJSON(url, function( data ) {
-        //console.log(data);
-        $.each(data.albums, function(i, album){
-            createAlbum(
-                    album.albumID,
-                    album.title,
-                    album.artist,
-                    favArray.includes(album.albumID));
-        });
-    });
-
-    window.scroll(0, 0);
+        window.scroll(0, 0);
     $('#detailsPage').slideToggle("slow", function(){
         $('main').hide();
     });
 }
-let unloadAlbum = () => {
+let unloadRelease = () => {
     $('main').show();
     $('#detailsPage').slideToggle("slow");
 }
@@ -180,50 +143,43 @@ let loadSongs = () => {
     $('#songList').append(
     `<th class="play"</th>` +
     `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` + 
-    `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` + 
+    `<th class="songReleases">Release</th> <th class="songGenres">Genre</th>` +
     `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
 
-    let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
-    let favArray = [];
-
-    $.getJSON(url, function(data) {
-        $.each(data.songs, function(i,song) {
-            favArray.push(song.songID);
-        });
-    });
-
-    url = API_HOST.concat('/api/songs/');
+    let url = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
-        url = url.concat('?title=', searchTerm, '&page=', pageNum);
-    else
-        url = url.concat('?page=', pageNum);
+      url = url.concat('?title=', searchTerm);
 
     $.getJSON(url, function( data ) {
-        //console.log(data);
         $.each(data.songs, function(i, song){
-            let genres = song.genres[0].name; 
-            let length = song.genres.length;
-            if(length > 3)
-                length = 3;
-            for(let i = 1; i < length; i++)
-            {
-                genres = genres.concat(', ' + song.genres[i].name);
+            let genres = '';
+            if (song.genres.length > 0){
+                genres = song.genres[0].name;
+                let length = song.genres.length;
+                if(length > 3)
+                    length = 3;
+                for(let i = 1; i < length; i++)
+                {
+                    genres = genres.concat(', ' + song.genres[i].name);
+                }
             }
-           
-            let artists = song.artists[0].name;
-            length = song.artists.length;
-            if(length > 3)
-                length = 3;
-            for(let i = 1; i < length; i++)
-            {
-                artists = artists.concat(', ' + song.artists[i].name);
+            let artists = '';
+            if(song.artists.length > 0){
+                artists = song.artists[0].name;
+                length = song.artists.length;
+                if(length > 3)
+                    length = 3;
+                for(let i = 1; i < length; i++)
+                {
+                    artists = artists.concat(', ' + song.artists[i].name);
+                }
             }
-
             let songSeconds = song.length % 60;
             if(songSeconds < 10)
                 songSeconds += '0';
+
             createSong("songList",
                         song.songID,
                         song.title,
@@ -232,7 +188,7 @@ let loadSongs = () => {
                         genres,
                         Math.trunc(song.length / 60) + ":" + songSeconds,
                         song.release.release_date,
-                        favArray.includes(song.songID),
+                        song.favorite,
                         0);
         });
     });
@@ -253,71 +209,45 @@ let loadNextPage = () => {
 let loadPlaylist = () => {
     $('#playlistList').empty();
     $('#playlistList').append(
-    `<th class="play"</th>` +
-    `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
-    `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` +
-    `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
+        `<th class="play"</th>` +
+        `<th class="fav"></th>` +
+        `<th class="songPlayDate">Play Date</th>` +
+        `<th class="songTitles">Title</th>` +
+        `<th class="songArtists">Artist</th>` +
+        `<th class="songAlbums">Album</th>` +
+        `<th class="songLengths">Length</th>`);
 
-    let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
-    let favArray = [];
-
-    $.getJSON(url, function(data) {
-        $.each(data.songs, function(i,song) {
-            favArray.push(song.songID);
-        });
-    });
-
-    url = API_HOST.concat('/api/songs/');
-    let searchTerm = document.querySelector('#keyword').value;
-
-    if (searchTerm != "")
-        url = url.concat('?title=', searchTerm, '&page=', pageNum);
-    else
-        url = url.concat('?page=', pageNum);
-
+    let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/play-songs/');
     $.getJSON(url, function( data ) {
-        //console.log(data);
-        $.each(data.songs, function(i, song){
-            let genres = song.genres[0].name; 
-            let length = song.genres.length;
-            if(length > 3)
-                length = 3;
-            for(let i = 1; i < length; i++)
-            {
-                genres = genres.concat(', ' + song.genres[i].name);
+        $.each(data.playlist, function(i, play){
+            let artists = '';
+            if(play.song.artists.length > 0){
+                artists = play.song.artists[0].name;
+                let length = play.song.artists.length;
+                if(length > 3)
+                    length = 3;
+                for(let i = 1; i < length; i++)
+                {
+                    artists = artists.concat(', ' + play.song.artists[i].name);
+                }
             }
-            
-            let artists = song.artists[0].name;
-            length = song.artists.length;
-            if(length > 3)
-                length = 3;
-            for(let i = 1; i < length; i++)
-            {
-                artists = artists.concat(', ' + song.artists[i].name);
-            }
-
-            let songSeconds = song.length % 60;
+            let songSeconds = play.song.length % 60;
             if(songSeconds < 10)
                 songSeconds += '0';
-            if(favArray.includes(song.songID))
-            {
-                    createSong("playlistList",
-                        song.songID,
-                        song.title,
-                        artists,
-                        song.release.title,
-                        genres,
-                        Math.trunc(song.length / 60) + ":" + songSeconds,
-                        song.release.release_date,
-                        favArray.includes(song.songID),
-                        0);
-            }
-            
+
+            createPlayedSong("playlistList",
+                play.song.songID,
+                play.song.title,
+                artists,
+                play.song.release.title,
+                Math.trunc(play.song.length / 60) + ":" + songSeconds,
+                play.playDate,
+                play.song.favorite);
         });
     });
 }
 
-let loadGeneres = () => {
+let loadGenres = () => {
     $('#genreList').empty();
     $('#genreList').append(`<th class="fav"></th> <th class="songTitles">Title</th>`);
 
@@ -333,7 +263,7 @@ let loadGeneres = () => {
 
     $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-genres/'), function(data) {
         $.each(data.genres, function(i,genre) {
-            favArray.push(genreID.genreID); 
+            favArray.push(genreID.genreID);
         });
     });
 

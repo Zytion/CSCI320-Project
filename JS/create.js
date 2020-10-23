@@ -5,6 +5,7 @@ let favorited = (event) => {
     switch(row.className)
     {
         case "songRow":
+        case "playedSongRow":
             let songID = row.getAttribute('data-id');
             url = url + '/favorite-songs/';
             console.log("Favorite song: " + songID);
@@ -18,10 +19,14 @@ let favorited = (event) => {
                 },
                 error: function (xhr, status, error) {
                     console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                },
+                complete: function (xhr, status) {
+                    console.log("Update Playlist");
+                    loadPlaylist();
                 }
             });
             break;
-        case "albumRow":
+        case "releaseRow":
             let releaseID = row.getAttribute('data-id');
             url = url + '/favorite-releases/';
             console.log("Favorite album: " + releaseID);
@@ -55,24 +60,20 @@ let favorited = (event) => {
                 }
             });
             break;
-        case "albumSongRow":
-            
-            break;
     }
 }
 
 let play = (event) => 
 {
     let row = event.target.parentNode.parentNode;
-    console.log(row.getAttribute('data-id') + ": played");
+    let songID = row.getAttribute('data-id');
+    console.log(songID + ": played");
     switch(row.className)
     {
         case "songRow":
-            let songID = row.getAttribute('data-id');
-            let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/play-songs/');
-            console.log("Played song: " + songID);
+            console.log("Played from Songs: " + songID);
             $.ajax({
-                url: url,
+                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/play-songs/'),
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify({songID: songID}),
@@ -84,36 +85,55 @@ let play = (event) =>
                 }
             });
             break;
-        case "albumRow":
-
+        case "playedSongRow":
+            console.log("Played from playlist: " + songID);
+            $.ajax({
+                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/play-songs/'),
+                type: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({songID: songID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " playID:" + data.playID + " playDate:" + data.playDate);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                },
+                complete: function (xhr, status) {
+                    console.log("Update Playlist");
+                    loadPlaylist();
+                }
+            });
             break;
         case "artistRow":
-            
+
             break;
         case "albumSongRow":
-            
+
             break;
     }
-    
+
 }
 
-let createAlbum = (id, title, artist, favBool) =>
+let createRelease = (id, title, artist, type, releaseDate, favBool) =>
 {
-    var album = $('<tr></tr>', {"class" : 'albumRow'}).append(
+    var release = $('<tr></tr>', {"class" : 'releaseRow'}).append(
+
         $('<td/>', {"class": "fav"}).append(
             $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
             $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
     ),
-    $('<td/>', {"class": "albumTitles"}).text(title),
-    $('<td/>', {"class": "albumArtists"}).text(artist));
+    $('<td/>', {"class": "releaseTitles"}).text(title),
+    $('<td/>', {"class": "releaseArtists"}).text(artist),
+    $('<td/>', {"class": "releaseTypes"}).text(type),
+    $('<td/>', {"class": "releaseDates"}).text(releaseDate));
     
-    //album.click(loadAlbum);
-    album.attr('data-id', id);
+    //release.click(loadRelease);
+    release.attr('data-id', id);
 
-    $('#albumList').append(album);
+    $('#releaseList').append(release);
 }
 
-let createSong = (list, id, title, artist, album, genre, length, date, favBool, plays) => {
+let createSong = (list, id, title, artist, release, genre, length, date, favBool, plays) => {
     $('#' + list).append(
         $('<tr></tr>', {"class" : 'songRow'}).append(
             $('<td/>', {"class": "fav"}).append(
@@ -127,13 +147,33 @@ let createSong = (list, id, title, artist, album, genre, length, date, favBool, 
         ),
         $('<td/>', {"class": "songTitles"}).text(title),
         $('<td/>', {"class": "songArtists"}).text(artist),
-        $('<td/>', {"class": "songAlbums"}).text(album),
+        $('<td/>', {"class": "songReleases"}).text(release),
         $('<td/>', {"class": "songGenres"}).text(genre),
         $('<td/>', {"class": "songLengths"}).text(length),
         $('<td/>', {"class": "songDates"}).text(date),
         $('<td/>', {"class": "songPlays"}).text(plays)
         ).attr('data-id', id));
 }
+
+let createPlayedSong = (list, id, title, artist, release, length, playDate, favBool) => {
+    $('#' + list).append(
+        $('<tr></tr>', {"class" : 'playedSongRow'}).append(
+            $('<td/>', {"class": "fav"}).append(
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
+                ($('<label/>', { "class": "container", "class" : "heart"}).text('❤'))
+        ),
+        $('<td/>', {"class": "play"}).append(
+            $('<input/>', { "type": "button", "class" : "play"}).click(play),
+            ($('<label/>', { "class": "container", "class" : "play"}).text('▷'))
+        ),
+        $('<td/>', {"class": "songPlayDate"}).text(playDate),
+        $('<td/>', {"class": "songTitles"}).text(title),
+        $('<td/>', {"class": "songArtists"}).text(artist),
+        $('<td/>', {"class": "songReleases"}).text(release),
+        $('<td/>', {"class": "songLengths"}).text(length)
+        ).attr('data-id', id));
+}
+
 let createArtist = (id, name, favBool) => {
     $('#artistList').append(
         $('<tr></tr>', {"class": "artistRow"}).append(
@@ -142,9 +182,9 @@ let createArtist = (id, name, favBool) => {
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ), $('<td/>', {"class": "artistName"}).text(name)).attr('data-id', id));
 }
-let createAlbumSong = (title, genre, length, date, favBool, track, plays) => {
-    $('#albumSongs').append(
-        $('<tr></tr>', {"class" : 'albumSongRow'}).append(
+let createReleaseSong = (title, genre, length, date, favBool, track, plays) => {
+    $('#releaseSongs').append(
+        $('<tr></tr>').append(
             $('<td/>', {"class": "fav"}).append(
                 $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
