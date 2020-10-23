@@ -11,7 +11,7 @@ let getSongs = () =>
 }
 
 
-function getSongGeneres(data){
+function getGeneres(data){
   let genres = data.genres[0].name;
   let length = data.genres.length;
   if (length > 3)
@@ -22,7 +22,7 @@ function getSongGeneres(data){
   return genres;
 }
 
-function getSongArtists(data){
+function getArtists(data){
   let artists = data.artists[0].name;
   length = data.artists.length;
   if (length > 3)
