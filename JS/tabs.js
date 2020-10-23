@@ -254,7 +254,7 @@ let loadPlaylist = () => {
 
 let loadGenres = () => {
     $('#genreList').empty();
-    $('#genreList').append(`<th class="fav"></th> <th class="songTitles">Title</th>`);
+    $('#genreList').append(`<th class="songTitles">Title</th>`);
 
     let url = API_HOST.concat('/api/genres');
     let searchTerm = document.querySelector('#keyword').value;
@@ -265,20 +265,9 @@ let loadGenres = () => {
         url = url.concat('?page=', pageNum);
 
     var favArray = [];
-
     $.getJSON(API_HOST.concat('/api/users/' + DEFAULT_USERID + '/favorite-genres/'), function(data) {
         $.each(data.genres, function(i,genre) {
             favArray.push(genreID.genreID);
-        });
-    });
-
-    $.getJSON(url, function( data ) {
-        //console.log(data);
-        $.each(data.genres, function(i, genre){
-            genreCreate(
-                        genre.genreID,
-                        genre.title,
-                        favArray.includes(genre.genreID));
         });
     });
 }

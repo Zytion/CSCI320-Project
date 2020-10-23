@@ -197,11 +197,8 @@ let createReleaseSong = (title, genre, length, date, favBool, track, plays) => {
         $('<td/>', {"class": "songPlays"}).text(plays)));
 }
 
-let genreCreate = (id, name, favBool) => {
+let genreCreate = (id, name) => {
     $('#genreList').append(
         $('<tr></tr>', {"class": "genreRow"}).append(
-            $('<td/>', {"class": "fav"}).append(
-                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
-                $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
-        ), $('<td/>', {"class": "genreName"}).text(name)).attr('data-id', id));
+            $('<td/>', {"class": "genreName"}).text(name)).attr('data-id', id));
 }
