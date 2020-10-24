@@ -65,6 +65,7 @@ let favorited = (event) => {
 
 let play = (event) => 
 {
+    event.target.parentNode.parentNode.children[8].innerText++
     let row = event.target.parentNode.parentNode;
     let songID = row.getAttribute('data-id');
     console.log(songID + ": played");
@@ -86,7 +87,6 @@ let play = (event) =>
                 complete: function (xhr, status) {
                     console.log("Update Songslist");
                     //TODO: How can we update the favoriteSongs list when play was clicked from songs
-                    loadSongs();
                 }
             });
             break;
@@ -105,7 +105,6 @@ let play = (event) =>
                 },
                 complete: function (xhr, status) {
                     console.log("Update Playlist");
-                    loadPlaylist();
                 }
             });
             break;
