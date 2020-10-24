@@ -150,7 +150,7 @@ let loadRelease = (event) => {
                 song.release.release_date,
                 song.favorite,
                 song.track_number,
-                0);
+                song.play_count);
         });
     });
     
