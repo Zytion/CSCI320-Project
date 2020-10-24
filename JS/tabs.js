@@ -136,24 +136,26 @@ let loadRelease = (event) => {
         `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` +
         `<th class="songGenres">Genre</th>` +
         `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
-    
+
     let url = API_HOST.concat('/api/releases/' + event.currentTarget.getAttribute('data-id'));
     $.getJSON(url, function (data) {
         $('#releaseDetailTitle').text(data.title);
         $('#releaseDetailArtist').text(getArtists(data));
         $.each(data.songs, function (i, song) {
-            createReleaseSong(
-                song.songID,
-                song.title,
-                getGeneres(song),
-                getSongTime(song),
-                song.release.release_date,
-                song.favorite,
-                song.track_number,
-                song.play_count);
+            $.getJSON(API_HOST.concat('/api/songs/' + song.songID), function (data) {
+                createReleaseSong(
+                    data.songID,
+                    data.title,
+                    getGeneres(data),
+                    getSongTime(data),
+                    data.release.release_date,
+                    song.favorite,
+                    song.track_number,
+                    data.play_count);
+            });
         });
     });
-    
+
     window.scroll(0, 0);
     $('#detailsPage').slideToggle("slow", function () {
         $('main').hide();
