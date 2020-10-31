@@ -216,3 +216,11 @@ let genreCreate = (id, name) => {
             $('<td/>', {"class": "genreName"}).text(name)).attr('data-id', id));
 }
 
+let createUser = (id, name, favBool) => {
+    $('#usersList').append(
+        $('<tr></tr>', {"class": "usersRow"}).append(
+            $('<td/>', {"class": "fav"}).append(
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
+                $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
+        ), $('<td/>', {"class": "usersName"}).text(name)).attr('data-id', id));
+}

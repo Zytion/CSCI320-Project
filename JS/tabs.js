@@ -77,6 +77,10 @@ function changeTab(tab) {
             loadFriends();
             pages[8].className = "";
             break;
+        case "Users":
+            loadUsers();
+            pages[9].className = "";
+            break;
     }
 }
 
@@ -203,12 +207,33 @@ let loadSongs = () => {
     });
 }
 
+let loadUsers = () => {
+    $('#usersList').empty();
+    $('#usersList').append(
+        `<th class="fav"></th> <th class="usersName">Name</th>`);
+
+    let url = API_HOST.concat('/api/users/');
+    let searchTerm = document.querySelector('#keyword').value;
+
+    if (searchTerm != "")
+        url = url.concat('?name=', pageNum, '&user=', DEFAULT_USERID);
+
+    $.getJSON(url, function (data) {
+        $.each(data.users, function (i, user) {
+            createUser(
+                user.userID,
+                user.profilename,
+                user.favorite);
+        });
+    });
+}
+
 let loadFriends = () => {
     $('#friendsList').empty();
     $('#friendsList').append(
         `<th class="fav"></th> <th class="friendName">Name</th>`);
 
-    //let url = API_HOST.concat('/api/artists/');
+    let url = API_HOST.concat('/api/artists/');
     let searchTerm = document.querySelector('#keyword').value;
 
     if (searchTerm != "")
@@ -261,25 +286,22 @@ let loadFavoriteSongs = () => {
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
 
-    let songUrl = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
-    if (searchTerm != "")
-        songUrl = songUrl.concat('?title=', searchTerm);
-
     $.getJSON(url, function (data) {
         $.each(data.songs, function (i, song) {
-            $.getJSON(songUrl + song.songID, function (data) {
+            if (song.title.includes(searchTerm)) {
                 createSong("favSongs",
-                    data.songID,
-                    data.title,
-                    getArtists(data),
-                    data.release.title,
-                    getGeneres(data),
-                    getSongTime(data),
-                    data.release.release_date,
+                    song.songID,
+                    song.title,
+                    getArtists(song),
+                    song.release.title,
+                    getGeneres(song),
+                    getSongTime(song),
+                    song.release.release_date,
                     true,
-                    data.play_count);
-            });
+                    song.play_count);
+            }
+
         });
     });
 }
@@ -290,21 +312,17 @@ let loadFavoriteArists = () => {
         `<th class="fav"></th> <th class="artistName">Name</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-artists/');
-
-    let lookupURL = API_HOST.concat('/api/artists/');
     let searchTerm = document.querySelector('#keyword').value;
-    if (searchTerm != "")
-        lookupURL = lookupURL.concat('?title=', searchTerm);
 
     $.getJSON(url, function (data) {
         $.each(data.artists, function (i, artist) {
-            $.getJSON(lookupURL + artist.artistID, function (data) {
+            if (artist.name.includes(searchTerm)) {
                 createArtist(
                     "favArtistsList",
-                    data.artistID,
-                    data.name,
+                    artist.artistID,
+                    artist.name,
                     true);
-            });
+            }
         });
     });
 }
@@ -322,20 +340,20 @@ let loadFavoriteReleases = () => {
 
     let lookupURL = API_HOST.concat('/api/releases/');
     let searchTerm = document.querySelector('#keyword').value;
-    if (searchTerm != "")
-        lookupURL = lookupURL.concat('?title=', searchTerm);
 
     $.getJSON(url, function (data) {
         $.each(data.releases, function (i, info) {
             $.getJSON(lookupURL + info.releaseID, function (release) {
-                createRelease(
-                    'favReleasesList',
-                    release.releaseID,
-                    release.title,
-                    getArtists(release),
-                    release.type,
-                    release.release_date,
-                    true);
+                if (release.title.includes(searchTerm)) {
+                    createRelease(
+                        'favReleasesList',
+                        release.releaseID,
+                        release.title,
+                        getArtists(release),
+                        release.type,
+                        release.release_date,
+                        true);
+                }
             });
         });
     });

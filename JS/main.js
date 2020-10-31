@@ -11,7 +11,8 @@ window.onload = function load()
 
 const tabs = document.querySelectorAll("#tabs li");
 for (let li of tabs) {
-    li.addEventListener("click", tabClick);
+    if(li.id == "")
+        li.addEventListener("click", tabClick);
 }
 
 const searchBar = document.querySelector("#searchBar");

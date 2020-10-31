@@ -9,6 +9,7 @@ ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    width: 100%;
 }
 li {
 
@@ -217,4 +218,13 @@ tr:nth-child(odd) {
 /* Change the background color of the dropdown button when the dropdown content is shown */
 .dropdown:hover .dropbtn {
 
-} 
+}
+
+div#tabs li#tabBreak {
+  flex: 1 0 auto;
+  cursor: default;
+}
+
+div#tabs li#tabBreak:hover {
+  background-color: #0072ed;
+}
