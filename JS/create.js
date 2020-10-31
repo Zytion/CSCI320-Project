@@ -185,6 +185,16 @@ let createArtist = (list, id, name, favBool) => {
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ), $('<td/>', {"class": "artistName"}).text(name)).attr('data-id', id));
 }
+
+let createFriend = (list, id, name, favBool) => {
+    $('#' + list).append(
+        $('<tr></tr>', {"class": "friendRow"}).append(
+            $('<td/>', {"class": "fav"}).append(
+                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
+                $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
+        ), $('<td/>', {"class": "friendName"}).text(name)).attr('data-id', id));
+}
+
 let createReleaseSong = (id, title, genre, length, date, favBool, track, plays) => {
     $('#releaseSongs').append(
         $('<tr></tr>', {"class" : 'songRow'}).append(
@@ -205,3 +215,4 @@ let genreCreate = (id, name) => {
         $('<tr></tr>', {"class": "genreRow"}).append(
             $('<td/>', {"class": "genreName"}).text(name)).attr('data-id', id));
 }
+

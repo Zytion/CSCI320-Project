@@ -73,6 +73,10 @@ function changeTab(tab) {
             loadPlaylist();
             pages[7].className = "";
             break;
+        case "Friends":
+            loadFriends();
+            pages[8].className = "";
+            break;
     }
 }
 
@@ -198,6 +202,33 @@ let loadSongs = () => {
         });
     });
 }
+
+let loadFriends = () => {
+    $('#friendsList').empty();
+    $('#friendsList').append(
+        `<th class="fav"></th> <th class="friendName">Name</th>`);
+
+    //let url = API_HOST.concat('/api/artists/');
+    let searchTerm = document.querySelector('#keyword').value;
+
+    if (searchTerm != "")
+        url = url.concat('?name=', searchTerm, '&page=', pageNum, '&user=', DEFAULT_USERID);
+    else
+        url = url.concat('?page=', pageNum, '&user=', DEFAULT_USERID);
+
+    /*
+    $.getJSON(url, function (data) {
+        $.each(data.artists, function (i, artist) {
+            createArtist(
+                'friendsList',
+                artist.artistID,
+                artist.name,
+                artist.favorite);
+        });
+    });
+    */
+}
+
 let loadPrevPage = () => {
     if (pageNum > 1) {
         pageNum--;
