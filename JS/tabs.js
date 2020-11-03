@@ -233,25 +233,19 @@ let loadFriends = () => {
     $('#friendsList').append(
         `<th class="fav"></th> <th class="friendName">Name</th>`);
 
-    let url = API_HOST.concat('/api/artists/');
-    let searchTerm = document.querySelector('#keyword').value;
+    let url = API_HOST.concat('/api/users/befriended_by/');
+    url = url.concat(DEFAULT_USERID);
 
-    if (searchTerm != "")
-        url = url.concat('?name=', searchTerm, '&page=', pageNum, '&user=', DEFAULT_USERID);
-    else
-        url = url.concat('?page=', pageNum, '&user=', DEFAULT_USERID);
-
-    /*
     $.getJSON(url, function (data) {
-        $.each(data.artists, function (i, artist) {
-            createArtist(
+        $.each(data.friends, function (i, friend) {
+            createFriend(
                 'friendsList',
-                artist.artistID,
-                artist.name,
-                artist.favorite);
+                friend.friendID,
+                friend.name,
+                friend.favorite);
         });
     });
-    */
+
 }
 
 let loadPrevPage = () => {
