@@ -136,7 +136,7 @@ let createRelease = (list, id, title, artist, type, releaseDate, favBool) =>
     $('#' + list).append(release);
 }
 
-let createSong = (list, id, title, artist, release, genre, length, date, favBool, plays) => {
+let createSong = (list, id, title, artist, length, favBool, plays) => {
     $('#' + list).append(
         $('<tr></tr>', {"class" : 'songRow'}).append(
             $('<td/>', {"class": "fav"}).append(
@@ -150,15 +150,12 @@ let createSong = (list, id, title, artist, release, genre, length, date, favBool
         ),
         $('<td/>', {"class": "songTitles"}).text(title),
         $('<td/>', {"class": "songArtists"}).text(artist),
-        $('<td/>', {"class": "songReleases"}).text(release),
-        $('<td/>', {"class": "songGenres"}).text(genre),
         $('<td/>', {"class": "songLengths"}).text(length),
-        $('<td/>', {"class": "songDates"}).text(date),
         $('<td/>', {"class": "songPlays"}).text(plays)
         ).attr('data-id', id));
 }
 
-let createPlayedSong = (list, id, title, artist, release, length, playDate, favBool) => {
+let createPlayedSong = (list, id, title, artist, length, playDate, favBool) => {
     $('#' + list).append(
         $('<tr></tr>', {"class" : 'playedSongRow'}).append(
             $('<td/>', {"class": "fav"}).append(
@@ -172,7 +169,6 @@ let createPlayedSong = (list, id, title, artist, release, length, playDate, favB
         $('<td/>', {"class": "songPlayDate"}).text(playDate),
         $('<td/>', {"class": "songTitles"}).text(title),
         $('<td/>', {"class": "songArtists"}).text(artist),
-        $('<td/>', {"class": "songReleases"}).text(release),
         $('<td/>', {"class": "songLengths"}).text(length)
         ).attr('data-id', id));
 }
@@ -195,7 +191,7 @@ let createFriend = (list, id, name, favBool) => {
         ), $('<td/>', {"class": "friendName"}).text(name)).attr('data-id', id));
 }
 
-let createReleaseSong = (id, title, genre, length, date, favBool, track, plays) => {
+let createReleaseSong = (id, title, length, favBool, track, plays) => {
     $('#releaseSongs').append(
         $('<tr></tr>', {"class" : 'songRow'}).append(
             $('<td/>', {"class": "fav"}).append(
@@ -204,9 +200,7 @@ let createReleaseSong = (id, title, genre, length, date, favBool, track, plays) 
         ),
         $('<td/>', {"class": "trackNumber"}).text(track),
         $('<td/>', {"class": "songTitles"}).text(title),
-        $('<td/>', {"class": "songGenres"}).text(genre),
         $('<td/>', {"class": "songLengths"}).text(length),
-        $('<td/>', {"class": "songDates"}).text(date),
         $('<td/>', {"class": "songPlays"}).text(plays)).attr('data-id', id));
 }
 

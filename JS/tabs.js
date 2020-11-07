@@ -142,8 +142,7 @@ let loadRelease = (event) => {
     $('#releaseSongs').empty();
     $('#releaseSongs').append(
         `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` +
-        `<th class="songGenres">Genre</th>` +
-        `<th class="songLengths">Length</th> <th class="songDates">Release Date</th> <th class="songPlays">Times Played</th>`);
+        `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/releases/' + event.currentTarget.getAttribute('data-id'));
     $.getJSON(url, function (data) {
@@ -154,9 +153,7 @@ let loadRelease = (event) => {
                 createReleaseSong(
                     data.songID,
                     data.title,
-                    getGeneres(data),
                     getSongTime(data),
-                    data.release.release_date,
                     song.favorite,
                     song.track_number,
                     data.play_count);
@@ -180,8 +177,7 @@ let loadSongs = () => {
     $('#songList').append(
         `<th class="play"</th>` +
         `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
-        `<th class="songReleases">Release</th> <th class="songGenres">Genre</th>` +
-        `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
+        `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/songs/');
     let searchTerm = document.querySelector('#keyword').value;
@@ -197,10 +193,7 @@ let loadSongs = () => {
                 song.songID,
                 song.title,
                 getArtists(song),
-                song.release.title,
-                getGeneres(song),
                 getSongTime(song),
-                song.release.release_date,
                 song.favorite,
                 song.play_count);
         });
@@ -274,9 +267,9 @@ let loadFavoriteSongs = () => {
     $('#favSongs').empty();
     $('#favSongs').append(
         `<th class="play"</th>` +
-        `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
-        `<th class="songAlbums">Album</th> <th class="songGenres">Genre</th>` +
-        `<th class="songLengths">Length</th> <th class="songDates">Release Date</th><th class="songPlays">Times Played</th>`);
+        `<th class="fav"></th> <th class="songTitles">Title</th>` +
+        `<th class="songAlbums">Album</th>` +
+        `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
 
@@ -287,11 +280,7 @@ let loadFavoriteSongs = () => {
                 createSong("favSongs",
                     song.songID,
                     song.title,
-                    getArtists(song),
-                    song.release.title,
-                    getGeneres(song),
                     getSongTime(song),
-                    song.release.release_date,
                     true,
                     song.play_count);
             }
@@ -361,7 +350,6 @@ let loadPlaylist = () => {
         `<th class="songPlayDate">Play Date</th>` +
         `<th class="songTitles">Title</th>` +
         `<th class="songArtists">Artist</th>` +
-        `<th class="songAlbums">Album</th>` +
         `<th class="songLengths">Length</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/play-songs/');
@@ -374,7 +362,6 @@ let loadPlaylist = () => {
                 play.song.songID,
                 play.song.title,
                 getArtists(play.song),
-                play.song.release.title,
                 getSongTime(play.song),
                 play.playDate,
                 play.song.favorite);
