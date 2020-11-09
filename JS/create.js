@@ -65,7 +65,7 @@ let favorited = (event) => {
 
 let play = (event) => 
 {
-    event.target.parentNode.parentNode.children[8].innerText++
+    event.target.parentNode.parentNode.children[5].innerText++
     let row = event.target.parentNode.parentNode;
     let songID = row.getAttribute('data-id');
     console.log(songID + ": played");
@@ -118,7 +118,7 @@ let play = (event) =>
 
 }
 
-let createRelease = (list, id, title, artist, type, releaseDate, favBool) =>
+let createRelease = (list, id, title, artist, type, releaseDate, genres, favBool) =>
 {
     var release = $('<tr></tr>', {"class" : 'releaseRow'}).append(
         $('<td/>', {"class": "fav"}).append(
@@ -128,7 +128,8 @@ let createRelease = (list, id, title, artist, type, releaseDate, favBool) =>
     $('<td/>', {"class": "releaseTitles"}).text(title),
     $('<td/>', {"class": "releaseArtists"}).text(artist),
     $('<td/>', {"class": "releaseTypes"}).text(type),
-    $('<td/>', {"class": "releaseDates"}).text(releaseDate));
+    $('<td/>', {"class": "releaseDates"}).text(releaseDate),
+    $('<td/>', {"class": "genres"}).text(genres));
     
     release.click(loadRelease);
     release.attr('data-id', id);
@@ -191,17 +192,13 @@ let createFriend = (list, id, name, favBool) => {
         ), $('<td/>', {"class": "friendName"}).text(name)).attr('data-id', id));
 }
 
-let createReleaseSong = (id, title, length, favBool, track, plays) => {
+let createReleaseSong = (id, title, length, track, plays) => {
     $('#releaseSongs').append(
-        $('<tr></tr>', {"class" : 'songRow'}).append(
-            $('<td/>', {"class": "fav"}).append(
-                $('<input/>', { "type": "checkbox", "class" : "heart", "checked" : favBool}).click(favorited),
-                $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
-        ),
-        $('<td/>', {"class": "trackNumber"}).text(track),
-        $('<td/>', {"class": "songTitles"}).text(title),
-        $('<td/>', {"class": "songLengths"}).text(length),
-        $('<td/>', {"class": "songPlays"}).text(plays)).attr('data-id', id));
+        $('<tr></tr>', {"class" : 'releaseSongRow'}).append(
+            $('<td/>', {"class": "trackNumber"}).text(track),
+            $('<td/>', {"class": "songTitles"}).text(title),
+            $('<td/>', {"class": "songLengths"}).text(length),
+            $('<td/>', {"class": "songPlays"}).text(plays)).attr('data-id', id));
 }
 
 let genreCreate = (id, name) => {

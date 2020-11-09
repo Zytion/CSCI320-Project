@@ -115,7 +115,8 @@ let loadReleases = () => {
         `<th class="releaseTitles">Title</th>` +
         `<th class="releaseArtists">Artist</th>` +
         `<th class="releaseTypes">Type</th>` +
-        `<th class="releaseDates">Release Date</th>`);
+        `<th class="releaseDates">Release Date</th>` +
+        `<th class="releaseGenres">Genres</th>`);
     let url = API_HOST.concat('/api/releases');
     let searchTerm = document.querySelector('#keyword').value;
 
@@ -133,6 +134,7 @@ let loadReleases = () => {
                 getArtists(release),
                 release.type,
                 release.release_date,
+                getGenres(release),
                 release.favorite);
         });
     });
@@ -141,23 +143,21 @@ let loadReleases = () => {
 let loadRelease = (event) => {
     $('#releaseSongs').empty();
     $('#releaseSongs').append(
-        `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` +
+        `<th class="trackNumber">Track</th> <th class="songTitles">Title</th>` +
         `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/releases/' + event.currentTarget.getAttribute('data-id'));
+
     $.getJSON(url, function (data) {
         $('#releaseDetailTitle').text(data.title);
         $('#releaseDetailArtist').text(getArtists(data));
         $.each(data.songs, function (i, song) {
-            $.getJSON(API_HOST.concat('/api/songs/' + song.songID), function (data) {
-                createReleaseSong(
-                    data.songID,
-                    data.title,
-                    getSongTime(data),
-                    song.favorite,
-                    song.track_number,
-                    data.play_count);
-            });
+            createReleaseSong(
+                song.songID,
+                song.title,
+                getSongTime(song),
+                song.track_number,
+                song.play_count);
         });
     });
 
@@ -230,12 +230,12 @@ let loadFriends = () => {
     url = url.concat(DEFAULT_USERID);
 
     $.getJSON(url, function (data) {
-        $.each(data.friends, function (i, friend) {
+        $.each(data.users, function (i, friend) {
             createFriend(
                 'friendsList',
-                friend.friendID,
-                friend.name,
-                friend.favorite);
+                friend.user.userID,
+                friend.user.profilename,
+                true);
         });
     });
 
@@ -267,24 +267,20 @@ let loadFavoriteSongs = () => {
     $('#favSongs').empty();
     $('#favSongs').append(
         `<th class="play"</th>` +
-        `<th class="fav"></th> <th class="songTitles">Title</th>` +
-        `<th class="songAlbums">Album</th>` +
+        `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
         `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
 
-    let searchTerm = document.querySelector('#keyword').value;
     $.getJSON(url, function (data) {
         $.each(data.songs, function (i, song) {
-            if (song.title.includes(searchTerm)) {
-                createSong("favSongs",
-                    song.songID,
-                    song.title,
-                    getSongTime(song),
-                    true,
-                    song.play_count);
-            }
-
+            createSong("favSongs",
+                song.songID,
+                song.title,
+                getArtists(song),
+                getSongTime(song),
+                true,
+                song.play_count);
         });
     });
 }
@@ -317,27 +313,25 @@ let loadFavoriteReleases = () => {
         `<th class="releaseTitles">Title</th>` +
         `<th class="releaseArtists">Artist</th>` +
         `<th class="releaseTypes">Type</th>` +
-        `<th class="releaseDates">Release Date</th>`);
+        `<th class="releaseDates">Release Date</th>` +
+        `<th class="releaseGenres">Genres</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-releases/');
-
-    let lookupURL = API_HOST.concat('/api/releases/');
     let searchTerm = document.querySelector('#keyword').value;
 
     $.getJSON(url, function (data) {
-        $.each(data.releases, function (i, info) {
-            $.getJSON(lookupURL + info.releaseID, function (release) {
-                if (release.title.includes(searchTerm)) {
-                    createRelease(
-                        'favReleasesList',
-                        release.releaseID,
-                        release.title,
-                        getArtists(release),
-                        release.type,
-                        release.release_date,
-                        true);
-                }
-            });
+        $.each(data.releases, function (i, release) {
+            if (release.title.includes(searchTerm)) {
+                createRelease(
+                    'favReleasesList',
+                    release.releaseID,
+                    release.title,
+                    getArtists(release),
+                    release.type,
+                    release.release_date,
+                    getGenres(release),
+                    true);
+            }
         });
     });
 }
