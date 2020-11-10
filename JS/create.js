@@ -60,6 +60,23 @@ let favorited = (event) => {
                 }
             });
             break;
+        case "usersRow":
+            let friendID = row.getAttribute('data-id');
+            url = url + '/friend/';
+            console.log("Friend: " + friendID);
+            $.ajax({
+                url: url,
+                type: event.target.checked ? 'PUT' : 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({friendID: friendID}),
+                success: function (data, status) {
+                    console.log("status:" + status + " userID:" + data.userID + " artistID:" + data.friendID);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
+            break;
     }
 }
 

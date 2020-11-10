@@ -30,6 +30,8 @@ function changeTab(tab) {
         element.className = "hidden";
     });
 
+    unloadRelease();
+
     document.querySelector('#pageButtons').className = "";
 
     small.innerHTML = "Showing " + tab + " by name";
@@ -80,6 +82,9 @@ function changeTab(tab) {
         case "Users":
             loadUsers();
             pages[9].className = "";
+            break;
+        case "Collections":
+            pages[10].className = "";
             break;
     }
 }
@@ -139,6 +144,9 @@ let loadReleases = () => {
 }
 
 let loadRelease = (event) => {
+    if(event.target.className == "heart")
+        return;
+
     $('#releaseSongs').empty();
     $('#releaseSongs').append(
         `<th class="fav"></th> <th class="trackNumber">Track</th> <th class="songTitles">Title</th>` +
@@ -169,7 +177,7 @@ let loadRelease = (event) => {
 
 let unloadRelease = () => {
     $('main').show();
-    $('#detailsPage').slideToggle("slow");
+    $('#detailsPage').hide();
 }
 
 let loadSongs = () => {
@@ -211,12 +219,20 @@ let loadUsers = () => {
     if (searchTerm != "")
         url = url.concat('?name=', pageNum, '&user=', DEFAULT_USERID);
 
+    let friends = [];
+    let friendURL = API_HOST.concat('/api/users/befriended_by/', DEFAULT_USERID);
+    $.getJSON(friendURL, function (data) {
+        $.each(data.users, function (i, friend) {
+            friends.push(friend.user.userID);
+        });
+    });
+    
     $.getJSON(url, function (data) {
         $.each(data.users, function (i, user) {
             createUser(
                 user.userID,
                 user.profilename,
-                user.favorite);
+                friends.includes(user.userID));
         });
     });
 }
@@ -230,12 +246,12 @@ let loadFriends = () => {
     url = url.concat(DEFAULT_USERID);
 
     $.getJSON(url, function (data) {
-        $.each(data.friends, function (i, friend) {
+        $.each(data.users, function (i, friend) {
             createFriend(
                 'friendsList',
-                friend.friendID,
-                friend.name,
-                friend.favorite);
+                friend.user.userID,
+                friend.user.profilename,
+                true);
         });
     });
 
@@ -277,9 +293,11 @@ let loadFavoriteSongs = () => {
     $.getJSON(url, function (data) {
         $.each(data.songs, function (i, song) {
             if (song.title.includes(searchTerm)) {
+
                 createSong("favSongs",
                     song.songID,
                     song.title,
+                    getArtists(song),
                     getSongTime(song),
                     true,
                     song.play_count);
@@ -387,4 +405,8 @@ let loadGenres = () => {
             favArray.push(genreID.genreID);
         });
     });
+}
+
+let changeCollection = () => {
+    console.log("test");
 }
