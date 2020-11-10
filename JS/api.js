@@ -11,7 +11,7 @@ let getSongs = () =>
 }
 
 
-function getGeneres(data){
+function getGenres(data){
   if(data.genres.length == 0)
     return "";
   let genres = data.genres[0].name;
