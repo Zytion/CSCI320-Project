@@ -60,6 +60,7 @@ let favorited = (event) => {
                 }
             });
             break;
+        case "friendRow":
         case "usersRow":
             let friendID = row.getAttribute('data-id');
             url = url + '/friend/';
@@ -70,7 +71,7 @@ let favorited = (event) => {
                 contentType: 'application/json',
                 data: JSON.stringify({friendID: friendID}),
                 success: function (data, status) {
-                    console.log("status:" + status + " userID:" + data.userID + " artistID:" + data.friendID);
+                    console.log("status:" + status + " userID:" + data.userID + " friendID:" + data.friendID);
                 },
                 error: function (xhr, status, error) {
                     console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
