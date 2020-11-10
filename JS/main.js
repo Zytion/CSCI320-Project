@@ -1,7 +1,7 @@
 window.onload = function load()
 {
     $('#detailsPage').hide();
-    changeTab("Collections");
+    changeTab("Songs");
     $('#releaseBack').click(unloadRelease);
 
     $('#nextPageButton').click(loadNextPage);
