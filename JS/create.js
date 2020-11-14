@@ -233,3 +233,10 @@ let createUser = (id, name, favBool) => {
                 $('<label/>', { "class": "container", "class" : "heart"}).text('❤')
         ), $('<td/>', {"class": "usersName"}).text(name)).attr('data-id', id));
 }
+
+let createCollectionItem = (list, id, name, type, rowType) => {
+    $('#' + list).append(
+        $('<tr></tr>', {"class": "collectionRow"}).append(
+        $('<td/>', {"class": "collectionItemName"}).text(name),
+        $('<td/>', {"class": "collectionItemType"}).text(type)).attr('data-id', id));
+}

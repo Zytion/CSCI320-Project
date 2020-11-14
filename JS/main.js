@@ -23,15 +23,3 @@ const searchBtn = document.querySelector("#searchBtn");
 searchBar.addEventListener("click", searchClick);
 
 var pageNum = 1;
-
-let loadCollections = () => {
-    let url = API_HOST.concat('/api/collections/');
-
-    $.getJSON(url, function (data) {
-        $.each(data.collections, function (i, collection) {
-            $('#collection').append(
-                $('<option></option>', {"value": collection.collectionID}).text(collection.name)
-                );
-        });
-    });
-}

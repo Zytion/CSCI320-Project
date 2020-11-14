@@ -84,6 +84,7 @@ function changeTab(tab) {
             pages[9].className = "";
             break;
         case "Collections":
+            loadCollections();
             pages[10].className = "";
             break;
     }
@@ -111,6 +112,54 @@ let loadArtists = () => {
                 artist.favorite);
         });
     });
+}
+
+let loadCollections = () => {
+    let url = API_HOST.concat('/api/users/1/collections/');
+
+    $('#collection').empty();
+
+    $.getJSON(url, function (data) {
+        $.each(data.collections, function (i, collection) {
+            $('#collection').append(
+                $('<option></option>', { "value": collection.collectionID }).text(collection.name).attr('data-id', collection.collectionID)
+            );
+        });
+    }).then(function () {
+        $('#collection').trigger("change");
+    });
+
+}
+
+let changeCollection = (e) => {
+    $('#collectionList').empty();
+    $('#collectionList').append(
+        `<th class="collectionItemName">Name</th>` +
+        `<th class="collectionItemType">Type</th>`);
+
+    let id = e.target[e.target.selectedIndex].getAttribute(('data-id'));
+    console.log(id);
+
+    let url = API_HOST.concat('/api/users/1/collections/' + id);
+
+    $.getJSON(url, function (collection) {
+        if (collection.artists.length != 0) {
+            $.each(collection.artists, function (i, artist) {
+                createCollectionItem('collectionList', artist.artistID, artist.name, "Artist");
+            });
+        }
+        if (collection.releases.length != 0) {
+            $.each(collection.releases, function (i, release) {
+                createCollectionItem('collectionList', release.releaseID, release.title, release.type);
+            });
+        }
+        if (collection.songs.length != 0) {
+            $.each(collection.songs, function (i, song) {
+                createCollectionItem('collectionList', song.songID, song.title, "Song");
+            });
+        }
+    });
+
 }
 
 let loadReleases = () => {
@@ -146,7 +195,7 @@ let loadReleases = () => {
 }
 
 let loadRelease = (event) => {
-    if(event.target.className == "heart")
+    if (event.target.className == "heart")
         return;
 
     $('#releaseSongs').empty();
@@ -226,7 +275,7 @@ let loadUsers = () => {
             friends.push(friend.user.userID);
         });
     });
-    
+
     $.getJSON(url, function (data) {
         $.each(data.users, function (i, user) {
             createUser(
@@ -397,8 +446,4 @@ let loadGenres = () => {
             favArray.push(genreID.genreID);
         });
     });
-}
-
-let changeCollection = () => {
-    console.log("test");
 }
