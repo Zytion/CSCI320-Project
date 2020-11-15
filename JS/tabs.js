@@ -125,9 +125,11 @@ let loadCollections = () => {
             );
         });
     }).then(function () {
-        $('#collection').append(
-            $('<option></option>', { 'id': 'createCollection', 'value': '-1' }).text('Create Collection').click(createNewCollection)
-        )
+        if ($('#collection')[0].childElementCount == 0) {
+            $('#collection').append(
+                $('<option></option>', { 'id': 'createCollection', 'value': '-1' }).text('No Collection')
+            )
+        }
         $('#collection').trigger("change");
     });
 
@@ -143,7 +145,7 @@ let changeCollection = (e) => {
         //`<th class="remove"></th>` +
         `<th class="collectionItemName">Name</th>` +
         `<th class="collectionItemType">Type</th>`);
-    if (e.target.selectedIndex == -1)
+    if (e.target.selectedIndex == -1 || e.target.value == -1)
         return;
     if (e.target.value == -1) {
         e.target.selectedIndex = 0;

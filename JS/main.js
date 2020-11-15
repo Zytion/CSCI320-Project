@@ -4,10 +4,11 @@ window.onload = function load() {
 
     $('#nextPageButton').click(loadNextPage);
     $('#prevPageButton').click(loadPrevPage);
-
+    
+    $('#createCollection').click(createNewCollection);
+    
     //loadCollections();
     $('#collection').change(changeCollection);
-
     $('#myModal').click(function(event) {
         if(event.target.id == "collectionCreationName")
         {
