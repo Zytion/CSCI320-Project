@@ -1,5 +1,4 @@
-window.onload = function load()
-{
+window.onload = function load() {
     changeTab("Songs");
 }
 
@@ -8,10 +7,9 @@ let pages = document.querySelectorAll("main > *")
 const tabs = document.querySelectorAll("#tabs li");
 
 let tabClick = (e) => {
-    for(let li of tabs)
-    {
+    for (let li of tabs) {
         li.className = "";
-        if(li.dataset.tab == e.target.dataset.tab)
+        if (li.dataset.tab == e.target.dataset.tab)
             li.className = "active";
     }
     changeTab(e.target.dataset.tab);
@@ -23,8 +21,7 @@ function changeTab(tab) {
     });
 
     small.innerHTML = "Creating " + tab;
-    switch(tab)
-    {
+    switch (tab) {
         case "Songs":
             pages[0].className = "";
             break;
@@ -32,12 +29,13 @@ function changeTab(tab) {
             pages[1].className = "";
             break;
         case "Releases":
-            console.log("here")
-            console.log(pages)
             pages[2].className = "";
             break;
         case "Genres":
             pages[3].className = "";
+            break;
+        case "Collection":
+            pages[4].className = "";
             break;
     }
 }

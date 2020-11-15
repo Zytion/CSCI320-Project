@@ -1,15 +1,16 @@
-main > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 60%;
-    align-items: baseline;
-    column-gap: 0.5em;
-    row-gap: 0.5em;
-    grid-template-rows: repeat(10, min-content);
+main > form > div {
+    display: flex;
+    flex-flow: column nowrap;
 }
-main > div > * {
-    height: 100%;
+
+main > form > div > div {
+    margin-top: 0.5em;
 }
+
+main > form > div > button {
+    margin-top: 1em;
+}
+
 main {
     display: flex;
     flex-flow: row wrap;

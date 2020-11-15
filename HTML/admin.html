@@ -28,28 +28,29 @@
             <li data-tab="Artists">Artist</li>
             <li data-tab="Releases">Release</li>
             <li data-tab="Genres">Genre</li>
+            <li data-tab="Collection">Collection</li>
         </ul>
         <small>Creating a Song</small>
     </div>
     <main>
         <form action="/admin/song" method="POST">
-        <div id="songPage">
-            <div>Title</div>
-            <input type="text" name="name" id="songTitle">
-            <div>Length</div>
-            <input type="text" name="182" id="songLength">
-            <div>Release Date</div>
-            <input type="date" name="10/08/2020" id="songDate">
-            <div>release ID</div>
-            <input type="text" name="1" id="songReleaseID">
-            <div>Artist ID</div>
-            <input type="text" name="12" id="songArtist">
-            <div>Track Number</div>
-            <input type="text" name="123" id="songTrackNumber">
-            <div>Genre</div>
-            <input type="text" name="124" id="songGenre">
-            <button id="songSubmit" type="submit">Add Song</button>
-        </div>
+            <div id="songPage">
+                <div>Title</div>
+                <input type="text" name="name" id="songTitle">
+                <div>Length</div>
+                <input type="text" name="182" id="songLength">
+                <div>Release Date</div>
+                <input type="date" name="10/08/2020" id="songDate">
+                <div>release ID</div>
+                <input type="text" name="1" id="songReleaseID">
+                <div>Artist ID</div>
+                <input type="text" name="12" id="songArtist">
+                <div>Track Number</div>
+                <input type="text" name="123" id="songTrackNumber">
+                <div>Genre</div>
+                <input type="text" name="124" id="songGenre">
+                <button id="songSubmit" type="submit">Add Song</button>
+            </div>
         </form>
 
         <form action="/admin/artist" method="POST">
@@ -80,13 +81,21 @@
         </form>
 
         <form action="/admin/genre" method="POST">
-        <div id="genrePage">
-            <div>Title</div>
-            <input type="text" name="name" id="genreTitle">
-            <button id="genreSubmit" type="submit">Add Genre</button>
-        </div>
+            <div id="genrePage">
+                <div>Title</div>
+                <input type="text" name="name" id="genreTitle">
+                <button id="genreSubmit" type="submit">Add Genre</button>
+            </div>
+        </form>
+        <form action="/admin/collcetion" method="POST">
+            <div id="collectionPage">
+                <div>Name</div>
+                <input type="text" name="name" id="collectionName">
+                <button id="collectionSubmit" type="submit">Add Collection</button>
+            </div>
         </form>
     </main>
     <script src="../JS/admin.js"></script>
 </body>
+
 </html>
