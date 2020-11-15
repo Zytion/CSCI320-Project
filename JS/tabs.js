@@ -34,7 +34,7 @@ function changeTab(tab) {
 
     document.querySelector('#pageButtons').className = "";
 
-    small.innerHTML = "Showing " + tab + " by name";
+    small.innerHTML = "Showing " + tab;
     switch (tab) {
         case "Songs":
             loadSongs();
@@ -93,7 +93,7 @@ function changeTab(tab) {
 let loadArtists = () => {
     $('#artistList').empty();
     $('#artistList').append(
-        `<th class="fav"></th> <th class="artistName">Name</th>`);
+        `<th class="fav"></th><th class="addTo"></th><th class="artistName">Name</th>`);
 
     let url = API_HOST.concat('/api/artists/');
     let searchTerm = document.querySelector('#keyword').value;
@@ -115,7 +115,7 @@ let loadArtists = () => {
 }
 
 let loadCollections = () => {
-    let url = API_HOST.concat('/api/users/1/collections/');
+    let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/');
 
     $('#collection').empty();
 
@@ -136,11 +136,18 @@ let changeCollection = (e) => {
     $('#collectionList').append(
         `<th class="collectionItemName">Name</th>` +
         `<th class="collectionItemType">Type</th>`);
+    
 
+    if(e.target.selectedIndex == -1)
+    {
+        $('#collection').append(
+            $('<option></option>', { "value": -1 }).text('No Collections').attr('data-id', -1)
+        );
+        return;
+    }
+    
     let id = e.target[e.target.selectedIndex].getAttribute(('data-id'));
-    console.log(id);
-
-    let url = API_HOST.concat('/api/users/1/collections/' + id);
+    let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + id);
 
     $.getJSON(url, function (collection) {
         if (collection.artists.length != 0) {
@@ -166,6 +173,7 @@ let loadReleases = () => {
     $('#releaseList').empty();
     $('#releaseList').append(
         `<th class="fav"></th>` +
+        `<th class="addTo"></th>` +
         `<th class="releaseTitles">Title</th>` +
         `<th class="releaseArtists">Artist</th>` +
         `<th class="releaseTypes">Type</th>` +
@@ -195,7 +203,9 @@ let loadReleases = () => {
 }
 
 let loadRelease = (event) => {
-    if (event.target.className == "heart")
+    if (event.target.className == "heart" ||
+     event.target.className == "addTo" ||
+     event.target.className == "dropdown-content")
         return;
 
     $('#releaseSongs').empty();
@@ -232,8 +242,8 @@ let unloadRelease = () => {
 let loadSongs = () => {
     $('#songList').empty();
     $('#songList').append(
-        `<th class="play"</th>` +
-        `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
+        `<th class="fav"</th><th class="play"></th><th class="addTo"></th>` +
+        `<th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
         `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/songs/');
@@ -332,7 +342,7 @@ let loadFavoriteSongs = () => {
     $('#favSongs').empty();
     $('#favSongs').append(
         `<th class="play"</th>` +
-        `<th class="fav"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
+        `<th class="fav"></th><th class="addTo"></th> <th class="songTitles">Title</th> <th class="songArtists">Artist</th>` +
         `<th class="songLengths">Length</th><th class="songPlays">Times Played</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-songs/');
@@ -353,7 +363,7 @@ let loadFavoriteSongs = () => {
 let loadFavoriteArists = () => {
     $('#favArtistsList').empty();
     $('#favArtistsList').append(
-        `<th class="fav"></th> <th class="artistName">Name</th>`);
+        `<th class="fav"></th><th class="addTo"></th><th class="artistName">Name</th>`);
 
     let url = API_HOST.concat('/api/users/', DEFAULT_USERID, '/favorite-artists/');
     let searchTerm = document.querySelector('#keyword').value;
@@ -375,6 +385,7 @@ let loadFavoriteReleases = () => {
     $('#favReleasesList').empty();
     $('#favReleasesList').append(
         `<th class="fav"></th>` +
+        `<th class="addTo"></th>` +
         `<th class="releaseTitles">Title</th>` +
         `<th class="releaseArtists">Artist</th>` +
         `<th class="releaseTypes">Type</th>` +
