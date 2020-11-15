@@ -180,6 +180,62 @@ let addToCollection = (event) => {
 
 }
 
+let removeFromCollection = (e) => {
+    let collectionDropdown = $('#collection')[0];
+    if (collectionDropdown.selectedIndex == -1)
+        return;
+    
+    let collectionID = collectionDropdown[collectionDropdown.selectedIndex].getAttribute('data-id');
+    let row = e.target.parentNode.parentNode.parentNode;
+    let itemID = row.getAttribute('data-id');
+
+    switch (row.className) {
+        case "playedSongRow":
+        case "songRow":
+            $.ajax({
+                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID),
+                type: 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({ songID: itemID }),
+                success: function (data, status) {
+                    console.log("status:" + status + " song:" + data.song);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
+            break;
+        case "artistRow":
+            $.ajax({
+                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID),
+                type: 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({ artistID: itemID }),
+                success: function (data, status) {
+                    console.log("status:" + status + " artist:" + data.artist);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
+            break;
+        case "releaseRow":
+            $.ajax({
+                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID),
+                type: 'DELETE',
+                contentType: 'application/json',
+                data: JSON.stringify({ releaseID: itemID }),
+                success: function (data, status) {
+                    console.log("status:" + status + " release:" + data.release);
+                },
+                error: function (xhr, status, error) {
+                    console.log(status + " " + error + " " + $.parseJSON(xhr.responseText).message);
+                }
+            });
+            break;
+    }
+}
+
 let createRelease = (list, id, title, artist, type, releaseDate, genres, favBool) => {
     var release = $('<tr></tr>', { "class": 'releaseRow' }).append(
         $('<td/>', { "class": "fav" }).append(
@@ -187,7 +243,7 @@ let createRelease = (list, id, title, artist, type, releaseDate, genres, favBool
             $('<label/>', { "class": "container", "class": "heart" }).text('❤')
         ),
         $('<td/>', { "class": "addTo" }).append(
-            $('<label/>', {"class": "addTo" }).html('<i class="fa fa-plus-square-o" aria-hidden="true"></i>'),
+            $('<label/>', { "class": "addTo" }).html('<i class="fa fa-plus-square-o" aria-hidden="true"></i>'),
             collectionList.clone().click(addToCollection)
         ),
         $('<td/>', { "class": "releaseTitles" }).text(title),
@@ -214,7 +270,7 @@ let createSong = (list, id, title, artist, length, favBool, plays) => {
                 ($('<label/>', { "class": "container", "class": "play" }).text('▷'))
             ),
             $('<td/>', { "class": "addTo" }).append(
-                $('<label/>', {"class": "addTo" }).html('<i class="fa fa-plus-square-o" aria-hidden="true"></i>'),
+                $('<label/>', { "class": "addTo" }).html('<i class="fa fa-plus-square-o" aria-hidden="true"></i>'),
                 collectionList.clone().click(addToCollection)
             ),
             $('<td/>', { "class": "songTitles" }).text(title),
@@ -250,9 +306,9 @@ let createArtist = (list, id, name, favBool) => {
                 $('<label/>', { "class": "container", "class": "heart" }).text('❤')
             ),
             $('<td/>', { "class": "addTo" }).append(
-                $('<label/>', {"class": "addTo" }).html('<i class="fa fa-plus-square-o" aria-hidden="true"></i>'),
+                $('<label/>', { "class": "addTo" }).html('<i class="fa fa-plus-square-o" aria-hidden="true"></i>'),
                 collectionList.clone().click(addToCollection)
-            ), 
+            ),
             $('<td/>', { "class": "artistName" }).text(name)).attr('data-id', id));
 }
 
@@ -289,9 +345,12 @@ let createUser = (id, name, favBool) => {
             ), $('<td/>', { "class": "usersName" }).text(name)).attr('data-id', id));
 }
 
-let createCollectionItem = (list, id, name, type) => {
+let createCollectionItem = (list, id, name, type, rowType) => {
     $('#' + list).append(
-        $('<tr></tr>', { "class": "collectionRow" }).append(
+        $('<tr></tr>', { "class": rowType }).append(
+            // $('<td/>', { "class": "removeWrapper" }).append(
+            //     $('<label/>', { "class": "remove" }).html('<i class="fa fa-minus-square-o" aria-hidden="true"></i>').click(removeFromCollection)
+            // ),
             $('<td/>', { "class": "collectionItemName" }).text(name),
             $('<td/>', { "class": "collectionItemType" }).text(type)).attr('data-id', id));
 }

@@ -134,6 +134,7 @@ let loadCollections = () => {
 let changeCollection = (e) => {
     $('#collectionList').empty();
     $('#collectionList').append(
+        //`<th class="remove"></th>` +
         `<th class="collectionItemName">Name</th>` +
         `<th class="collectionItemType">Type</th>`);
     
@@ -152,17 +153,17 @@ let changeCollection = (e) => {
     $.getJSON(url, function (collection) {
         if (collection.artists.length != 0) {
             $.each(collection.artists, function (i, artist) {
-                createCollectionItem('collectionList', artist.artistID, artist.name, "Artist");
+                createCollectionItem('collectionList', artist.artistID, artist.name, "Artist", 'artistRow');
             });
         }
         if (collection.releases.length != 0) {
             $.each(collection.releases, function (i, release) {
-                createCollectionItem('collectionList', release.releaseID, release.title, release.type);
+                createCollectionItem('collectionList', release.releaseID, release.title, release.type, 'releaseRow');
             });
         }
         if (collection.songs.length != 0) {
             $.each(collection.songs, function (i, song) {
-                createCollectionItem('collectionList', song.songID, song.title, "Song");
+                createCollectionItem('collectionList', song.songID, song.title, "Song", 'songRow');
             });
         }
     });

@@ -1,71 +1,79 @@
 #collectionPage {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
 }
 #collectionPage > div {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: center;
-    padding: 0.5em;
-    color: #ddd;
-    background-color: #0072ed;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  padding: 0.5em;
+  color: #ddd;
+  background-color: #0072ed;
 }
 select#collection {
-    min-width: 100px;
-    text-align: center;
+  min-width: 100px;
+  text-align: center;
 }
 #collectionPage label {
-    padding-right: 1em;
+  padding-right: 1em;
 }
 
 input.addTo {
-    position: absolute;
-    scale: 2;
-    opacity: 0;
-  }
-  
-  label.addTo {
+  position: absolute;
+  scale: 2;
+  opacity: 0;
+}
+
+label.addTo {
   color: #aab8c2;
   cursor: pointer;
   font-size: 1em;
   align-self: center;  
   transition: color 0.2s ease-in-out;
-  }
-  
-  label.addTo::selection {
+}
+
+label.addTo::selection {
   color: none;
   background: transparent;
-  }
-  
-  label.addTo::moz-selection {
+}
+
+label.addTo::moz-selection {
   color: none;
   background: transparent;
-  }
-  
-  input.addTo:active + label 
-  {
-    color: black;
-  }
+}
+
+input.addTo:active + label 
+{
+  color: black;
+}
 
 .dropdown-content {
-    display: none;
-    flex-flow: column nowrap;
-    position: absolute;
-    background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-  }
-  .dropdown-content > * {
-    padding: 0.2em;
-    margin: 0;
-  }
-  
-  .dropdown-content > *:hover {
-    color: #0072ed;
-    cursor: pointer;
-  }
-  
-  .addTo:hover .dropdown-content {
-    display: flex;
-  }
+  display: none;
+  flex-flow: column nowrap;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content > * {
+  padding: 0.2em;
+  margin: 0;
+}
+
+.dropdown-content > *:hover {
+  color: #0072ed;
+  cursor: pointer;
+}
+
+.addTo:hover .dropdown-content {
+  display: flex;
+}
+.remove {
+  width: 1em;
+  padding: 0;
+}
+
+.remove:hover {
+  color: #0072ed;
+}

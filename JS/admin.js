@@ -34,9 +34,6 @@ function changeTab(tab) {
         case "Genres":
             pages[3].className = "";
             break;
-        case "Collection":
-            pages[4].className = "";
-            break;
     }
 }
 
