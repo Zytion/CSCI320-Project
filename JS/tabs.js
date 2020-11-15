@@ -118,7 +118,6 @@ let loadCollections = () => {
     let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/');
 
     $('#collection').empty();
-
     $.getJSON(url, function (data) {
         $.each(data.collections, function (i, collection) {
             $('#collection').append(
@@ -126,9 +125,16 @@ let loadCollections = () => {
             );
         });
     }).then(function () {
+        $('#collection').append(
+            $('<option></option>', { 'id': 'createCollection', 'value': '-1' }).text('Create Collection').click(createNewCollection)
+        )
         $('#collection').trigger("change");
     });
 
+}
+let createNewCollection = (e) => {
+    $('#collectionCreationName')[0].value = "";
+    $('#myModal').show();
 }
 
 let changeCollection = (e) => {
@@ -137,16 +143,12 @@ let changeCollection = (e) => {
         //`<th class="remove"></th>` +
         `<th class="collectionItemName">Name</th>` +
         `<th class="collectionItemType">Type</th>`);
-    
-
-    if(e.target.selectedIndex == -1)
-    {
-        $('#collection').append(
-            $('<option></option>', { "value": -1 }).text('No Collections').attr('data-id', -1)
-        );
+    if (e.target.selectedIndex == -1)
         return;
+    if (e.target.value == -1) {
+        e.target.selectedIndex = 0;
     }
-    
+
     let id = e.target[e.target.selectedIndex].getAttribute(('data-id'));
     let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + id);
 
@@ -205,8 +207,8 @@ let loadReleases = () => {
 
 let loadRelease = (event) => {
     if (event.target.className == "heart" ||
-     event.target.className == "addTo" ||
-     event.target.className == "dropdown-content")
+        event.target.className == "addTo" ||
+        event.target.className == "dropdown-content")
         return;
 
     $('#releaseSongs').empty();

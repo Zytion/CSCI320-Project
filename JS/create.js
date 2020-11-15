@@ -131,12 +131,12 @@ let addToCollection = (event) => {
     let row = event.target.parentNode.parentNode.parentNode;
     let collectionID = event.target.getAttribute('data-id');
     let itemID = row.getAttribute('data-id');
-
+    let url = API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID);
     switch (row.className) {
         case "playedSongRow":
         case "songRow":
             $.ajax({
-                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID),
+                url: url,
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify({ songID: itemID }),
@@ -150,7 +150,7 @@ let addToCollection = (event) => {
             break;
         case "artistRow":
             $.ajax({
-                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID),
+                url: url,
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify({ artistID: itemID }),
@@ -164,7 +164,7 @@ let addToCollection = (event) => {
             break;
         case "releaseRow":
             $.ajax({
-                url: API_HOST.concat('/api/users/' + DEFAULT_USERID + '/collections/' + collectionID),
+                url: url,
                 type: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify({ releaseID: itemID }),

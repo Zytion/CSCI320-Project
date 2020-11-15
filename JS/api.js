@@ -1,7 +1,7 @@
 // Rest API server URL
 const API_HOST = "http://music3.club";
 // Default userID for favoriting when a user is not logged in
-const DEFAULT_USERID = "1";
+const DEFAULT_USERID = "7";
 
 let getSongs = () =>
 {

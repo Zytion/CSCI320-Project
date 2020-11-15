@@ -80,6 +80,19 @@
             <i class="fa fa-angle-up" aria-hidden="true"></i>
         </div>
     </div>
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div>
+                <span>Collection Name: </span>
+                <input type="text" name="Collection Name" id="collectionCreationName">
+                <div id="modalBreak"></div>
+                <button type="submit" id="collectionCreationSubmit">Create</button>
+            </div>
+        </div>
+
+    </div>
     <main>
         <div id="songPage">
             <table id="songList">
@@ -134,7 +147,8 @@
             <div>
                 <label for="collection">Collection: </label>
                 <select name="collection" id="collection">
-                  </select>
+                    <option id='createCollection' value="-1">Create Collection</option>
+                </select>
             </div>
             <table id="collectionList">
 
