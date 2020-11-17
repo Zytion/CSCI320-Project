@@ -81,10 +81,10 @@ let favorited = (event) => {
 }
 
 let play = (event) => {
-    event.target.parentNode.parentNode.children[5].innerText++
     let row = event.target.parentNode.parentNode;
+    row.childNodes[row.childElementCount - 1].innerText++;
+
     let songID = row.getAttribute('data-id');
-    console.log(songID + ": played");
     switch (row.className) {
         case "songRow":
             console.log("Played from Songs: " + songID);

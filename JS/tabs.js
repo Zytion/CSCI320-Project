@@ -289,16 +289,18 @@ let loadUsers = () => {
         $.each(data.users, function (i, friend) {
             friends.push(friend.user.userID);
         });
-    });
-
-    $.getJSON(url, function (data) {
-        $.each(data.users, function (i, user) {
-            createUser(
-                user.userID,
-                user.profilename,
-                friends.includes(user.userID));
+    }).then(function () {
+        $.getJSON(url, function (data) {
+            $.each(data.users, function (i, user) {
+                createUser(
+                    user.userID,
+                    user.profilename,
+                    friends.includes(user.userID));
+            });
         });
     });
+
+
 }
 
 let loadFriends = () => {
